@@ -9,9 +9,9 @@ namespace CodeSpy
 {
     public static class Ocr
     {
-        private const string SubscriptionKey = "51f0fbd8f1a546608c2fbce72eca90f1";
+        private const string SubscriptionKey = "<KEY>";
 
-        private const string UriBase = "https://ocrcodespy.cognitiveservices.azure.com/";
+        private const string UriBase = "<SERVICE_URL>";
 
         public static async Task<string> GetTextAsync(Stream imageFilePath)
         {
