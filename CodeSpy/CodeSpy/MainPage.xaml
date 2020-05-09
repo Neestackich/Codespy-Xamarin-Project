@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CodeSpy.MainPage" >
+    
+    <MasterDetailPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="MasterDetailBackColor">#443d47</Color>
+            <Color x:Key="BarBackGroundColor">#272329</Color>
+        </ResourceDictionary>
+    </MasterDetailPage.Resources>
+    
+    <MasterDetailPage.Master>
+        <ContentPage Title="Master" BackgroundColor="{DynamicResource Key=MasterDetailBackColor}">
+            <ContentPage.Content>
+                <StackLayout>
+                    <Button Text="Камера" Clicked="CameraButton_Clicked" 
+                            BackgroundColor="{DynamicResource Key=ButtonBackGroundColor}"
+                            TextColor="{DynamicResource Key=FontColor}"/>
+                    <Button Text="Редактор" Clicked="RedactorButton_Clicked" 
+                            BackgroundColor="{DynamicResource Key=ButtonBackGroundColor}"
+                            TextColor="{DynamicResource Key=FontColor}"/>
+                    <Button Text="Файл" Clicked="FileManagingButton_Clicked" 
+                            BackgroundColor="{DynamicResource Key=ButtonBackGroundColor}"
+                            TextColor="{DynamicResource Key=FontColor}"/>
+                    <Button Text="Браузер" Clicked="BrowserButton_Clicked" 
+                            BackgroundColor="{DynamicResource Key=ButtonBackGroundColor}"
+                            TextColor="{DynamicResource Key=FontColor}"/>
+                    <Button Text="Настройки" Clicked="SettingsButton_Clicked" 
+                            TextColor="{DynamicResource Key=FontColor}"
+                            FontSize="Micro"
+                            BackgroundColor="{DynamicResource Key=ButtonBackGroundColor}"/>
+                </StackLayout>
+            </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Master>
+
+    <MasterDetailPage.Detail>
+        <ContentPage>
+            <ContentPage.Content>
+                <Label Text="Detail page" />
+            </ContentPage.Content>
+        </ContentPage>
+    </MasterDetailPage.Detail>
+    
+</MasterDetailPage>

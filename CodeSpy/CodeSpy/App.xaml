@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="CodeSpy.App"
+             >
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PageBackGroundColor">#38323b</Color>
+            <Color x:Key="MasterDetailBackColor">#443d47</Color>
+            <Color x:Key="BarBackGroundColor">#272329</Color>
+            <Color x:Key="ButtonBackGroundColor">#272329</Color>
+            <Color x:Key="FontColor">#a937de</Color>
+
+            <Style x:Key="MenuButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#272329"/>
+                <Setter Property="TextColor" Value="#94849c"/>
+                <Setter Property="FontSize" Value="Large"/>
+            </Style>
+        </ResourceDictionary>
+    </Application.Resources>
+
+</Application>
