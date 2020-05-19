@@ -24,20 +24,24 @@ namespace CodeSpy
         private async void Capture_OnClicked(object sender, EventArgs e)
         {
             Clear();
+
             var photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
             {
                 PhotoSize = PhotoSize.Medium
             });
+
             Update(photo);
         }
 
         private async void Select_OnClicked(object sender, EventArgs e)
         {
             Clear();
+
             var photo = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
             {
                 PhotoSize = PhotoSize.Medium
             });
+
             Update(photo);
         }
 
@@ -45,7 +49,9 @@ namespace CodeSpy
         {
             Task.Run(async () =>
             {
-                var text = await Ocr.GetTextAsync(photo.GetStreamWithImageRotatedForExternalStorage());
+                var text = await Ocr.GetTextAsync(
+                    photo.GetStreamWithImageRotatedForExternalStorage());
+
                 Device.BeginInvokeOnMainThread(() => Text.Text = text);
             });
 

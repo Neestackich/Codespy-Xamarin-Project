@@ -9,9 +9,11 @@ namespace CodeSpy
 {
     public static class Ocr
     {
-        private const string SubscriptionKey = "51f0fbd8f1a546608c2fbce72eca90f1";
+        private const string SubscriptionKey = 
+            "51f0fbd8f1a546608c2fbce72eca90f1";
 
-        private const string UriBase = "https://ocrcodespy.cognitiveservices.azure.com/";
+        private const string UriBase = 
+            "https://ocrcodespy.cognitiveservices.azure.com/";
 
         public static async Task<string> GetTextAsync(Stream imageFilePath)
         {
@@ -44,8 +46,10 @@ namespace CodeSpy
                         builder.Append(word.Text);
                         builder.Append(" ");
                     }
+
                     builder.AppendLine();
                 }
+
                 builder.AppendLine();
             }
 

@@ -12,7 +12,7 @@ namespace CodeSpy
             
             InitializeComponent();
 
-            MainPage = new NavigationPage(new SplashPage());
+            MainPage = new NavigationPage(new SplashPageNew());
         }
 
         protected override void OnStart()

@@ -524,3 +524,4 @@ D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\C
 D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy.Android\obj\Debug\90\android\assets\System.Xml.XDocument.dll
 D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy.Android\obj\Debug\90\android\assets\System.Xml.XmlDocument.dll
 D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy.Android\obj\Debug\90\res\xml\file_paths.xml
+D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy.Android\obj\Debug\90\res\drawable\splashpagescreen.jpg

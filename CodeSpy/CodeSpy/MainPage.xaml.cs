@@ -14,6 +14,8 @@ namespace CodeSpy
         {
             InitializeComponent();
 
+            NavigationPage.SetHasNavigationBar(this, false);
+
             //страница, которая будет сразу показываться пользователю
             Detail = new NavigationPage(new Redactor())
             {

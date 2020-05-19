@@ -8,16 +8,12 @@
              Title="Камера"
              BackgroundColor="{DynamicResource Key=PageBackGroundColor}">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Capture" Clicked="Capture_OnClicked"/>
-        <ToolbarItem Text="Select" Clicked="Select_OnClicked"/>
-    </ContentPage.ToolbarItems>
-
     <ScrollView BackgroundColor="White">
         <StackLayout Spacing="5">
+            <Button x:Name="Capture" Text="Capture" Clicked="Capture_OnClicked"/>
+            <Button x:Name="Select" Text="Select" Clicked="Select_OnClicked"/>
             <Image x:Name="Image"/>
             <Label x:Name="Text"/>
         </StackLayout>
     </ScrollView>
-    
 </ContentPage>
