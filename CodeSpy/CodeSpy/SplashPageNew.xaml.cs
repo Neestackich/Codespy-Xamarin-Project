@@ -17,8 +17,6 @@ namespace CodeSpy
 
         public SplashPageNew()
         {
-            //BackgroundColor = Color.FromHex("#38323b");
-
             //убираем у экземпляра этого класса шапку навигации
             NavigationPage.SetHasNavigationBar(this, false);
 
@@ -36,7 +34,6 @@ namespace CodeSpy
                 HeightRequest = 100
             };
 
-            //absLayout.Children.Add(splashPageBackground, new Rectangle(0.5, 0.5, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
             absLayout.Children.Add(splashImage, new Rectangle(0.5, 0.5, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
 
             AbsoluteLayout.SetLayoutFlags(splashImage,
