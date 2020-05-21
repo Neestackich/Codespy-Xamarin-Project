@@ -1,8 +1,12 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
+
 using Plugin.Media;
 using Plugin.Media.Abstractions;
+using Plugin.Connectivity;
+using Plugin.Connectivity.Abstractions;
+
 using Xamarin.Forms;
 
 
@@ -10,15 +14,119 @@ namespace CodeSpy
 {
     public partial class Camera : ContentPage
     {
+        Image Photo;
+
+        Button Capture;
+        Button Select;
+
+        Label connectionMessage;
+        Label capturedText;
+
         public Camera()
         {
             InitializeComponent();
+
+            if (CrossConnectivity.Current.IsConnected)
+            {
+                Capture = new Button
+                {
+                    Text = "Capture"
+                };
+                Capture.Clicked += Capture_OnClicked;
+
+                Select = new Button
+                {
+                    Text = "Select"
+                };
+                Select.Clicked += Select_OnClicked;
+
+                Photo = new Image();
+
+                capturedText = new Label();
+
+                Content = new ScrollView
+                {
+                    Content = new StackLayout
+                    {
+                        Children = { Capture, Select, Photo, capturedText }
+                    }
+                };
+            }
+            else
+            {
+                connectionMessage = new Label
+                {
+                    Text = "Подключение отсутствует",
+                    HorizontalOptions = LayoutOptions.Center,
+                    VerticalOptions = LayoutOptions.Center
+                };
+
+                Content = new StackLayout
+                {
+                    Children = { connectionMessage }
+                };
+            };
+
+            //проверяет подключение
+            //если подключение есть - появляются кнопки и прочее
+            //если нет - то оставляем толко сообщенеи о том, что подключение отсутствует
+            CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
+        }
+
+        private void Current_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        {
+            ConnectivityCheck();
+        }
+
+        private void ConnectivityCheck()
+        {
+            if(CrossConnectivity.Current.IsConnected)
+            {
+                Capture = new Button
+                {
+                    Text = "Capture"
+                };
+                Capture.Clicked += Capture_OnClicked;
+
+                Select = new Button
+                {
+                    Text = "Select"
+                };
+                Select.Clicked += Select_OnClicked;
+
+                Photo = new Image();
+
+                capturedText = new Label();
+
+                Content = new ScrollView
+                {
+                    Content = new StackLayout
+                    {
+                        Children = { Capture, Select, Photo, capturedText }
+                    }
+                };
+            }
+            else
+            {
+                connectionMessage = new Label
+                {
+                    Text = "Подключение отсутствует",
+                    HorizontalOptions = LayoutOptions.Center,
+                    VerticalOptions = LayoutOptions.Center
+                };
+
+                Content = new StackLayout
+                {
+                    Children = { connectionMessage }
+                };
+            }
         }
 
         public void Clear()
         {
-            Image.Source = null;
-            Text.Text = null;
+            Photo.Source = null;
+
+            capturedText.Text = null;
         }
 
         private async void Capture_OnClicked(object sender, EventArgs e)
@@ -52,10 +160,10 @@ namespace CodeSpy
                 var text = await Ocr.GetTextAsync(
                     photo.GetStreamWithImageRotatedForExternalStorage());
 
-                Device.BeginInvokeOnMainThread(() => Text.Text = text);
+                Device.BeginInvokeOnMainThread(() => capturedText.Text = text);
             });
 
-            Image.Source = ImageSource.FromStream(photo.GetStream);
+            Photo.Source = ImageSource.FromStream(photo.GetStream);
         }
     }
 }
