@@ -69,11 +69,14 @@ namespace CodeSpy
 
             //проверяет подключение
             //если подключение есть - появляются кнопки и прочее
-            //если нет - то оставляем толко сообщенеи о том, что подключение отсутствует
-            CrossConnectivity.Current.ConnectivityChanged += Current_ConnectivityChanged;
+            //если нет - то оставляем толко сообщенеи о том, 
+            ///что подключение отсутствует
+            CrossConnectivity.Current.ConnectivityChanged += 
+                Current_ConnectivityChanged;
         }
 
-        private void Current_ConnectivityChanged(object sender, ConnectivityChangedEventArgs e)
+        private void Current_ConnectivityChanged(object sender, 
+            ConnectivityChangedEventArgs e)
         {
             ConnectivityCheck();
         }
@@ -133,10 +136,11 @@ namespace CodeSpy
         {
             Clear();
 
-            var photo = await CrossMedia.Current.TakePhotoAsync(new StoreCameraMediaOptions
-            {
-                PhotoSize = PhotoSize.Medium
-            });
+            var photo = await CrossMedia.Current.TakePhotoAsync(
+                new StoreCameraMediaOptions
+                {
+                    PhotoSize = PhotoSize.Medium
+                });
 
             Update(photo);
         }
@@ -145,10 +149,11 @@ namespace CodeSpy
         {
             Clear();
 
-            var photo = await CrossMedia.Current.PickPhotoAsync(new PickMediaOptions
-            {
-                PhotoSize = PhotoSize.Medium
-            });
+            var photo = await CrossMedia.Current.PickPhotoAsync(
+                new PickMediaOptions
+                {
+                    PhotoSize = PhotoSize.Medium
+                });
 
             Update(photo);
         }
