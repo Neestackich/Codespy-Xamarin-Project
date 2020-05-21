@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "gtTd3ew6pSPBoCg4Km6mTD+8f+OsbwXRF4Fwy9zIIVfG4Lonpbjx27+vanFpXvAnQtkiBbAjPW2E1ckbym6tbQ==",
+  "dgSpecHash": "JHtDbxtJiaWJ539Ps36JeEbP8Gv8nmGyzsUnqlyATczd0EfIJ3su2l9KjuhOuK2mPVp3BUP5TyYGe1h4ZqLCbw==",
   "success": true,
   "projectFilePath": "D:\\Programming\\VisualStudio\\XamarinPropject\\CodeSpyNeestackich\\CodeSpy\\CodeSpy\\CodeSpy.iOS\\CodeSpy.iOS.csproj",
   "expectedPackageFiles": [
@@ -59,9 +59,10 @@
     "C:\\Users\\succe\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\succe\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Users\\succe\\.nuget\\packages\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
+    "C:\\Users\\succe\\.nuget\\packages\\xam.plugin.connectivity\\3.2.0\\xam.plugin.connectivity.3.2.0.nupkg.sha512",
     "C:\\Users\\succe\\.nuget\\packages\\xam.plugin.media\\5.0.1\\xam.plugin.media.5.0.1.nupkg.sha512",
-    "C:\\Users\\succe\\.nuget\\packages\\xamarin.essentials\\1.5.3.1\\xamarin.essentials.1.5.3.1.nupkg.sha512",
-    "C:\\Users\\succe\\.nuget\\packages\\xamarin.forms\\4.6.0.726\\xamarin.forms.4.6.0.726.nupkg.sha512"
+    "C:\\Users\\succe\\.nuget\\packages\\xamarin.essentials\\1.5.3.2\\xamarin.essentials.1.5.3.2.nupkg.sha512",
+    "C:\\Users\\succe\\.nuget\\packages\\xamarin.forms\\4.6.0.800\\xamarin.forms.4.6.0.800.nupkg.sha512"
   ],
   "logs": []
 }

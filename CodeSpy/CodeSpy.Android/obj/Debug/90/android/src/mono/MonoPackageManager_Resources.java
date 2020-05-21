@@ -9,6 +9,8 @@ public class MonoPackageManager_Resources {
 		"Microsoft.Rest.ClientRuntime.Azure.dll",
 		"Microsoft.Rest.ClientRuntime.dll",
 		"Newtonsoft.Json.dll",
+		"Plugin.Connectivity.Abstractions.dll",
+		"Plugin.Connectivity.dll",
 		"Plugin.Media.dll",
 		"Xamarin.Android.Arch.Core.Common.dll",
 		"Xamarin.Android.Arch.Core.Runtime.dll",
