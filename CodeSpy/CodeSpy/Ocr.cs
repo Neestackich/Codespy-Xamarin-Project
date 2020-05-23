@@ -11,7 +11,6 @@ namespace CodeSpy
     {
         private const string SubscriptionKey =
             "51f0fbd8f1a546608c2fbce72eca90f1";
-
         private const string UriBase = 
             "https://ocrcodespy.cognitiveservices.azure.com/";
 
@@ -19,7 +18,8 @@ namespace CodeSpy
         {
             try
             {
-                using (var client = new ComputerVisionClient(new ApiKeyServiceClientCredentials(SubscriptionKey))
+                using (var client = new ComputerVisionClient(
+                    new ApiKeyServiceClientCredentials(SubscriptionKey))
                 { Endpoint = UriBase })
                 {
                     var result =
