@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CodeSpy
 {
-    class MessageToSend
+    class MessageToCompile
     {
         public string clientId { get; set; }
 

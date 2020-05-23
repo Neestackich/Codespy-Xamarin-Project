@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CodeSpy
 {
-    class CreditsInfo
+    class MessageToCheck
     {
         public string clientId { get; set; }
 

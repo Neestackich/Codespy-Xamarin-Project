@@ -4,7 +4,8 @@ using System.Text;
 
 namespace CodeSpy
 {
-    class Compiler
+    class CheckerOutputInfo
     {
+        public string used { get; set; }
     }
 }

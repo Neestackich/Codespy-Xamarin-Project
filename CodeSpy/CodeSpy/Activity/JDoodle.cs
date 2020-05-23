@@ -18,33 +18,39 @@ namespace CodeSpy
         private const string endPointCreditsCheck =
             "https://api.jdoodle.com/v1/credit-spent";
 
-        MessageToSend infoToCompileMessage;
+        MessageToCompile infoToCompileMessage;
 
-        CreditsInfo creditsInfoMessage;
-
-        string json;
+        MessageToCheck creditsInfoMessage;
 
         HttpWebRequest request;
 
+        CompilerOutputInfo compilerResult;
+
+        private string json;
+        private string result;
+        private string code = "#include <stdio.h> \nint main() { int x = 10; int y = 25; int z = x + y; printf(\"Sum of x+y = %i\", z); }";
+
         public JDoodle()
         {
-            infoToCompileMessage = new MessageToSend
+            infoToCompileMessage = new MessageToCompile
             {
                 clientId = "6b4813b8a8bcaa306cf200cb1614b862",
                 clientSecret =
                     "648bd55518cc25ec785b70ecf614298a1868679fe653517eace4567cb44bf86e",
-                script = "#include<stdio.h> int main() {int x = 10; int y = 25; int z = x + y; printf(\"Sum of x+y = %i\", z); }",
+                script = code,
                 stdin = "",
                 language = "c",
                 versionIndex = "0"
             };
 
-            creditsInfoMessage = new CreditsInfo
+            creditsInfoMessage = new MessageToCheck
             {
                 clientId = "6b4813b8a8bcaa306cf200cb1614b862",
                 clientSecret =
                     "648bd55518cc25ec785b70ecf614298a1868679fe653517eace4567cb44bf86e"
             };
+
+            compilerResult = new CompilerOutputInfo();
         }
 
         public async void SendMessage()
@@ -56,6 +62,7 @@ namespace CodeSpy
             request.Method = "POST";
 
             var stream = await request.GetRequestStreamAsync();
+
             using (var writer = new StreamWriter(stream))
             {
                 writer.Write(json);
@@ -67,10 +74,17 @@ namespace CodeSpy
 
             var respStream = response.GetResponseStream();
 
-            //using (StreamReader sr = new StreamReader(respStream))
-            //{
-            //    //return sr.ReadToEnd();
-            //}
+            using (StreamReader sr = new StreamReader(respStream))
+            {
+                result = sr.ReadToEnd();
+
+                var resultExample = JsonConvert.DeserializeObject<CompilerOutputInfo>(result);   
+
+                compilerResult.output = resultExample.output;
+                compilerResult.statusCode = resultExample.statusCode;
+                compilerResult.memory = resultExample.memory;
+                compilerResult.cpuTime = resultExample.cpuTime;
+            }
         }
     }
 }

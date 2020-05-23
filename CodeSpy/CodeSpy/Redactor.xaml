@@ -7,12 +7,5 @@
              x:Class="CodeSpy.Redactor"
              Title="Редактор"
              BackgroundColor="{DynamicResource Key=PageBackGroundColor}">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Editor"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-            <Button x:Name="SendToUrl" Text ="Send" Clicked="SendContent_ButtonClick" />
-        </StackLayout>
-    </ContentPage.Content>
+
 </ContentPage>
