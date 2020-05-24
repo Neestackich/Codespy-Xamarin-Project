@@ -44,7 +44,7 @@ namespace CodeSpy
                 {
                     HeightRequest = 400,
                     FontFamily = "Consolas",
-                    
+                    AutoSize = EditorAutoSizeOption.TextChanges,
                     BackgroundColor =
                         (Color)Resources["CodeEditorBackground"]
                 };
@@ -114,22 +114,23 @@ namespace CodeSpy
                 {
                     HeightRequest = 400,
                     FontFamily = "Consolas",
+                    AutoSize = EditorAutoSizeOption.TextChanges,
                     BackgroundColor =
                         (Color)Resources["CodeEditorBackground"]
                 };
 
                 RoundedEditor = new Frame
                 {
-                    Padding = 0,
+                    Padding = 10,
                     CornerRadius = 20,
                     BackgroundColor =
-                        (Color)Resources["PageBackGroundColor"],
+                        (Color)Resources["CodeEditorBackground"],
                     IsClippedToBounds = true,
                     HasShadow = false,
-                    Content = codeEditor,
-                    BorderColor =
-                        (Color)Resources["CodeEditorBorderColor"]
+                    Content = codeEditor
                 };
+                RoundedEditor.BorderColor =
+                        (Color)Resources["CodeEditorBorderColor"];
 
                 Content = new ScrollView
                 {

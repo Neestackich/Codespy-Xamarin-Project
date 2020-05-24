@@ -5,7 +5,6 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="CodeSpy.Camera"
-             Title="Камера"
              BackgroundColor="{DynamicResource Key=PageBackGroundColor}">
 
     <ContentPage.Resources>

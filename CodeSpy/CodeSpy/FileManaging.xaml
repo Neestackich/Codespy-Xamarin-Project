@@ -5,8 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="CodeSpy.FileManaging"
-             Title="Файл"
              BackgroundColor="{DynamicResource Key=PageBackGroundColor}">
+    
     <ContentPage.Content>
         <StackLayout>
             <Label Text="File!"
@@ -14,4 +14,5 @@
                 HorizontalOptions="CenterAndExpand" />
         </StackLayout>
     </ContentPage.Content>
+    
 </ContentPage>

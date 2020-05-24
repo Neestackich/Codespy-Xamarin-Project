@@ -32,7 +32,8 @@ namespace CodeSpy
         {
             Detail = new NavigationPage(new Camera())
             {
-                BarBackgroundColor = (Color)Resources["BarBackGroundColor"]
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
+                BarTextColor = (Color)Resources["BarTextColor"]
             };
 
             //чтоб меню пропадало
@@ -44,7 +45,8 @@ namespace CodeSpy
         {
             Detail = new NavigationPage(new Redactor())
             {
-                BarBackgroundColor = (Color)Resources["BarBackGroundColor"]
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
+                BarTextColor = (Color)Resources["BarTextColor"]
             };
 
             IsPresented = false;
@@ -55,7 +57,8 @@ namespace CodeSpy
         {
             Detail = new NavigationPage(new FileManaging())
             {
-                BarBackgroundColor = (Color)Resources["BarBackGroundColor"]
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
+                BarTextColor = (Color)Resources["BarTextColor"]
             };
 
             IsPresented = false;
@@ -66,7 +69,8 @@ namespace CodeSpy
         {
             Detail = new NavigationPage(new Browser())
             {
-                BarBackgroundColor = (Color)Resources["BarBackGroundColor"]
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
+                BarTextColor = (Color)Resources["BarTextColor"]
             };
 
             IsPresented = false;
@@ -77,7 +81,8 @@ namespace CodeSpy
         {
             Detail = new NavigationPage(new Settings())
             {
-                BarBackgroundColor = (Color)Resources["BarBackGroundColor"]
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
+                BarTextColor = (Color)Resources["BarTextColor"]
             };
 
             IsPresented = false;
