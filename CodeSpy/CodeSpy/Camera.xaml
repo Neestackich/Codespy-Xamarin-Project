@@ -8,4 +8,25 @@
              Title="Камера"
              BackgroundColor="{DynamicResource Key=PageBackGroundColor}">
 
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Color x:Key="PageBackGroundColor">#4d4552</Color>
+            <Color x:Key="MasterDetailBackColor">#443d47</Color>
+            <Color x:Key="BarBackGroundColor">#272329</Color>
+            <Color x:Key="ButtonBackGroundColor">#6507a3</Color>
+            <Color x:Key="FontColor">#a937de</Color>
+            <Color x:Key="CodeEditorBackground">#18151a</Color>
+            <Color x:Key="ExtractedTextBorderColor">#6507a3</Color>
+
+            <Style x:Key="LocalButtonsStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{DynamicResource Key=ButtonBackGroundColor}"/>
+                <Setter Property="TextColor" Value="#94849c"/>
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="WidthRequest" Value="110"/>
+                <Setter Property="HeightRequest" Value="110"/>
+                <Setter Property="CornerRadius" Value="60"/>
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
 </ContentPage>

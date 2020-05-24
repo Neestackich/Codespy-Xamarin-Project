@@ -19,9 +19,13 @@ namespace CodeSpy
     {
         JDoodle jdoodle;
 
-        Button SendToUrl;
+        Button sendToUrl;
 
         Label connectionMessage;
+
+        Editor codeEditor;
+
+        Frame RoundedEditor;
 
         public Redactor()
         {
@@ -29,17 +33,41 @@ namespace CodeSpy
 
             if (CrossConnectivity.Current.IsConnected)
             {
-                SendToUrl = new Button
+                sendToUrl = new Button
                 {
-                    Text = "Send"
+                    Text = "Send",
+                    TextColor = (Color)Resources["FontColor"]
                 };
-                SendToUrl.Clicked += SendContent_ButtonClick;
+                sendToUrl.Clicked += SendContent_ButtonClick;
+
+                codeEditor = new Editor
+                {
+                    HeightRequest = 400,
+                    FontFamily = "Consolas",
+                    
+                    BackgroundColor =
+                        (Color)Resources["CodeEditorBackground"]
+                };
+
+                RoundedEditor = new Frame
+                {
+                    Padding = 10,
+                    CornerRadius = 20,
+                    BackgroundColor = 
+                        (Color)Resources["CodeEditorBackground"],
+                    IsClippedToBounds = true,
+                    HasShadow = false,
+                    Content = codeEditor
+                };
+                RoundedEditor.BorderColor =
+                        (Color)Resources["CodeEditorBorderColor"];
 
                 Content = new ScrollView
                 {
                     Content = new StackLayout
                     {
-                        Children = { SendToUrl }
+                        Padding = 3,
+                        Children = { RoundedEditor, sendToUrl }
                     }
                 };
             }
@@ -54,6 +82,7 @@ namespace CodeSpy
 
                 Content = new StackLayout
                 {
+                    Padding = 3,
                     Children = { connectionMessage }
                 };
             };
@@ -74,17 +103,40 @@ namespace CodeSpy
         {
             if (CrossConnectivity.Current.IsConnected)
             {
-                SendToUrl = new Button
+                sendToUrl = new Button
                 {
-                    Text = "Send"
+                    Text = "Send",
+                    TextColor = (Color)Resources["FontColor"]
                 };
-                SendToUrl.Clicked += SendContent_ButtonClick;
+                sendToUrl.Clicked += SendContent_ButtonClick;
+
+                codeEditor = new Editor
+                {
+                    HeightRequest = 400,
+                    FontFamily = "Consolas",
+                    BackgroundColor =
+                        (Color)Resources["CodeEditorBackground"]
+                };
+
+                RoundedEditor = new Frame
+                {
+                    Padding = 0,
+                    CornerRadius = 20,
+                    BackgroundColor =
+                        (Color)Resources["PageBackGroundColor"],
+                    IsClippedToBounds = true,
+                    HasShadow = false,
+                    Content = codeEditor,
+                    BorderColor =
+                        (Color)Resources["CodeEditorBorderColor"]
+                };
 
                 Content = new ScrollView
                 {
                     Content = new StackLayout
                     {
-                        Children = { SendToUrl }
+                        Padding = 3,
+                        Children = { RoundedEditor, sendToUrl }
                     }
                 };
             }
@@ -99,14 +151,21 @@ namespace CodeSpy
 
                 Content = new StackLayout
                 {
+                    Padding = 3,
                     Children = { connectionMessage }
                 };
-            }
+            };
         }
 
-        private void SendContent_ButtonClick(object sender, EventArgs e)
+        private async void SendContent_ButtonClick(object sender, EventArgs e)
         {
-            jdoodle.SendMessage();
+            jdoodle.SendMessage(codeEditor.Text);
+
+
+            await DisplayAlert("Compiler message", $"Result: {jdoodle.compilerResult.output}\n" +
+                $"Status code: {jdoodle.compilerResult.statusCode}\n" +
+                $"Memory used: {jdoodle.compilerResult.memory}\n" +
+                $"Cpu time: {jdoodle.compilerResult.cpuTime}", "Ok");
         }
     }
 }

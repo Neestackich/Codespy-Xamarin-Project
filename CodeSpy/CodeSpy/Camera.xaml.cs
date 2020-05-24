@@ -8,13 +8,16 @@ using Plugin.Connectivity;
 using Plugin.Connectivity.Abstractions;
 
 using Xamarin.Forms;
-
+using System.Runtime.CompilerServices;
 
 namespace CodeSpy
 {
     public partial class Camera : ContentPage
     {
         Image Photo;
+
+        Frame RoundedPhoto;
+        Frame RoundedText;
 
         Button Capture;
         Button Select;
@@ -30,25 +33,52 @@ namespace CodeSpy
             {
                 Capture = new Button
                 {
-                    Text = "Capture"
+                    Text = "C",
+                    Style = (Style)Resources["LocalButtonsStyle"]
                 };
                 Capture.Clicked += Capture_OnClicked;
 
                 Select = new Button
                 {
-                    Text = "Select"
+                    Text = "+",
+                    Style = (Style)Resources["LocalButtonsStyle"]
                 };
                 Select.Clicked += Select_OnClicked;
 
+                capturedText = new Label
+                {
+                    TextColor = (Color)Resources["FontColor"]
+                };
+
                 Photo = new Image();
 
-                capturedText = new Label();
+                RoundedPhoto = new Frame
+                {
+                    Padding = 0,
+                    CornerRadius = 20,
+                    BackgroundColor = (Color)Resources["PageBackGroundColor"],
+                    IsClippedToBounds = true,
+                    HasShadow = false,
+                    Content = Photo
+                };
+
+                RoundedText = new Frame
+                {
+                    Margin = 0,
+                    Padding = 5,
+                    CornerRadius = 20,
+                    BackgroundColor = (Color)Resources["PageBackGroundColor"],
+                    IsClippedToBounds = true,
+                    HasShadow = false,
+                    Content = capturedText
+                };
 
                 Content = new ScrollView
                 {
                     Content = new StackLayout
                     {
-                        Children = { Capture, Select, Photo, capturedText }
+                        Padding = 3,
+                        Children = { Capture, Select, RoundedPhoto, RoundedText }
                     }
                 };
             }
@@ -63,6 +93,7 @@ namespace CodeSpy
 
                 Content = new StackLayout
                 {
+                    Padding = 3,
                     Children = { connectionMessage }
                 };
             };
@@ -87,25 +118,51 @@ namespace CodeSpy
             {
                 Capture = new Button
                 {
-                    Text = "Capture"
+                    Text = "C",
+                    Style = (Style)Resources["LocalButtonsStyle"]
                 };
                 Capture.Clicked += Capture_OnClicked;
 
                 Select = new Button
                 {
-                    Text = "Select"
+                    Text = "+",
+                    Style = (Style)Resources["LocalButtonsStyle"]
                 };
                 Select.Clicked += Select_OnClicked;
 
+                capturedText = new Label
+                {
+                    TextColor = (Color)Resources["FontColor"]
+                };
+
                 Photo = new Image();
 
-                capturedText = new Label();
+                RoundedPhoto = new Frame
+                {
+                    Padding = 0,
+                    CornerRadius = 20,
+                    BackgroundColor = (Color)Resources["PageBackGroundColor"],
+                    IsClippedToBounds = true,
+                    HasShadow = false,
+                    Content = Photo
+                };
+
+                RoundedText = new Frame
+                {
+                    Padding = 5,
+                    CornerRadius = 20,
+                    BackgroundColor = (Color)Resources["PageBackGroundColor"],
+                    IsClippedToBounds = true,
+                    HasShadow = false,
+                    Content = capturedText
+                };
 
                 Content = new ScrollView
                 {
                     Content = new StackLayout
                     {
-                        Children = { Capture, Select, Photo, capturedText }
+                        Padding = 3,
+                        Children = { Capture, Select, RoundedPhoto, RoundedText }
                     }
                 };
             }
@@ -120,6 +177,7 @@ namespace CodeSpy
 
                 Content = new StackLayout
                 {
+                    Padding = 3,
                     Children = { connectionMessage }
                 };
             }
@@ -130,6 +188,9 @@ namespace CodeSpy
             Photo.Source = null;
 
             capturedText.Text = null;
+
+            RoundedText.BackgroundColor =
+                (Color)Resources["PageBackGroundColor"];
         }
 
         private async void Capture_OnClicked(object sender, EventArgs e)
@@ -169,6 +230,11 @@ namespace CodeSpy
             });
 
             Photo.Source = ImageSource.FromStream(photo.GetStream);
+
+            RoundedText.BackgroundColor =
+                (Color)Resources["CodeEditorBackground"];
+            RoundedText.BorderColor = 
+                (Color)Resources["ExtractedTextBorderColor"];
         }
     }
 }

@@ -8,8 +8,19 @@
     
     <MasterDetailPage.Resources>
         <ResourceDictionary>
+            <Color x:Key="PageBackGroundColor">#38323b</Color>
             <Color x:Key="MasterDetailBackColor">#443d47</Color>
             <Color x:Key="BarBackGroundColor">#272329</Color>
+            <Color x:Key="ButtonBackGroundColor">#272329</Color>
+            <Color x:Key="FontColor">#a937de</Color>
+            <Color x:Key="BarTextColor">#6507a3</Color>
+            <x:Double x:Key="FontSize">15</x:Double>
+
+            <Style x:Key="MenuButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{DynamicResource Key=ButtonBackGroundColor}"/>
+                <Setter Property="TextColor" Value="{DynamicResource Key=FontColor}"/>
+                <Setter Property="FontSize" Value="{DynamicResource Key=FontSize}"/>
+            </Style>
         </ResourceDictionary>
     </MasterDetailPage.Resources>
     
@@ -18,21 +29,15 @@
             <ContentPage.Content>
                 <StackLayout>
                     <Button Text="Камера" Clicked="CameraButton_Clicked" 
-                            BackgroundColor="{DynamicResource Key=ButtonBackGroundColor}"
-                            TextColor="{DynamicResource Key=FontColor}"/>
+                            Style="{DynamicResource Key=MenuButtonStyle}"/>
                     <Button Text="Редактор" Clicked="RedactorButton_Clicked" 
-                            BackgroundColor="{DynamicResource Key=ButtonBackGroundColor}"
-                            TextColor="{DynamicResource Key=FontColor}"/>
+                            Style="{DynamicResource Key=MenuButtonStyle}"/>
                     <Button Text="Файл" Clicked="FileManagingButton_Clicked" 
-                            BackgroundColor="{DynamicResource Key=ButtonBackGroundColor}"
-                            TextColor="{DynamicResource Key=FontColor}"/>
+                            Style="{DynamicResource Key=MenuButtonStyle}"/>
                     <Button Text="Браузер" Clicked="BrowserButton_Clicked" 
-                            BackgroundColor="{DynamicResource Key=ButtonBackGroundColor}"
-                            TextColor="{DynamicResource Key=FontColor}"/>
+                            Style="{DynamicResource Key=MenuButtonStyle}"/>
                     <Button Text="Настройки" Clicked="SettingsButton_Clicked" 
-                            TextColor="{DynamicResource Key=FontColor}"
-                            FontSize="Micro"
-                            BackgroundColor="{DynamicResource Key=ButtonBackGroundColor}"/>
+                            Style="{DynamicResource Key=MenuButtonStyle}"/>
                 </StackLayout>
             </ContentPage.Content>
         </ContentPage>

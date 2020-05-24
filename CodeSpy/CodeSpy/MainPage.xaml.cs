@@ -19,11 +19,12 @@ namespace CodeSpy
             //страница, которая будет сразу показываться пользователю
             Detail = new NavigationPage(new Redactor())
             {
-                BarBackgroundColor = Color.FromHex("#272329")
-            };
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
+                BarTextColor = (Color)Resources["BarTextColor"]
+            }; 
 
-            //свойство, показ мастер страницы
-            IsPresented = true;
+             //свойство, показ мастер страницы
+             IsPresented = true;
         }
 
         //открываем страницу с камерой
@@ -31,7 +32,7 @@ namespace CodeSpy
         {
             Detail = new NavigationPage(new Camera())
             {
-                BarBackgroundColor = Color.FromHex("#272329"),
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"]
             };
 
             //чтоб меню пропадало
@@ -43,7 +44,7 @@ namespace CodeSpy
         {
             Detail = new NavigationPage(new Redactor())
             {
-                BarBackgroundColor = Color.FromHex("#272329"),
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"]
             };
 
             IsPresented = false;
@@ -54,7 +55,7 @@ namespace CodeSpy
         {
             Detail = new NavigationPage(new FileManaging())
             {
-                BarBackgroundColor = Color.FromHex("#272329"),
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"]
             };
 
             IsPresented = false;
@@ -65,7 +66,7 @@ namespace CodeSpy
         {
             Detail = new NavigationPage(new Browser())
             {
-                BarBackgroundColor = Color.FromHex("#272329"),
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"]
             };
 
             IsPresented = false;
@@ -76,7 +77,7 @@ namespace CodeSpy
         {
             Detail = new NavigationPage(new Settings())
             {
-                BarBackgroundColor = Color.FromHex("#272329"),
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"]
             };
 
             IsPresented = false;

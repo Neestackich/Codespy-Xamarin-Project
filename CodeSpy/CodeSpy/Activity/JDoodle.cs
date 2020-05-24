@@ -18,17 +18,16 @@ namespace CodeSpy
         private const string endPointCreditsCheck =
             "https://api.jdoodle.com/v1/credit-spent";
 
-        MessageToCompile infoToCompileMessage;
+        private MessageToCompile infoToCompileMessage;
 
-        MessageToCheck creditsInfoMessage;
+        private  MessageToCheck creditsInfoMessage;
 
-        HttpWebRequest request;
+        private HttpWebRequest request;
 
-        CompilerOutputInfo compilerResult;
+        public CompilerOutputInfo compilerResult;
 
         private string json;
         private string result;
-        private string code = "#include <stdio.h> \nint main() { int x = 10; int y = 25; int z = x + y; printf(\"Sum of x+y = %i\", z); }";
 
         public JDoodle()
         {
@@ -37,7 +36,6 @@ namespace CodeSpy
                 clientId = "6b4813b8a8bcaa306cf200cb1614b862",
                 clientSecret =
                     "648bd55518cc25ec785b70ecf614298a1868679fe653517eace4567cb44bf86e",
-                script = code,
                 stdin = "",
                 language = "c",
                 versionIndex = "0"
@@ -53,8 +51,10 @@ namespace CodeSpy
             compilerResult = new CompilerOutputInfo();
         }
 
-        public async void SendMessage()
+        public async void SendMessage(string _code)
         {
+            infoToCompileMessage.script = _code;
+
             json = JsonConvert.SerializeObject(infoToCompileMessage);
 
             request = (HttpWebRequest)WebRequest.Create(endPoint);
