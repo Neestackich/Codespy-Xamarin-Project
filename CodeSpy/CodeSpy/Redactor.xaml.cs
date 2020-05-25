@@ -36,7 +36,15 @@ namespace CodeSpy
                 sendToUrl = new Button
                 {
                     Text = "Send",
-                    TextColor = (Color)Resources["FontColor"]
+                    TextColor = 
+                       (Color)Resources["RedactorFontColor"],
+                    BackgroundColor = 
+                       (Color)Resources["RedactorButtonBGColor"],
+                    CornerRadius = 20,
+                    HeightRequest = 40,
+                    WidthRequest = 40,
+                    BorderWidth = 2,
+                    BorderColor = (Color)Resources["CodeEditorBorderColor"]
                 };
                 sendToUrl.Clicked += SendContent_ButtonClick;
 
@@ -54,13 +62,13 @@ namespace CodeSpy
                     Padding = 10,
                     CornerRadius = 20,
                     BackgroundColor = 
-                        (Color)Resources["CodeEditorBackground"],
+                       (Color)Resources["CodeEditorBackground"],
                     IsClippedToBounds = true,
                     HasShadow = false,
-                    Content = codeEditor
+                    Content = codeEditor,
+                    BorderColor =
+                       (Color)Resources["CodeEditorBorderColor"]
                 };
-                RoundedEditor.BorderColor =
-                        (Color)Resources["CodeEditorBorderColor"];
 
                 Content = new ScrollView
                 {

@@ -12,7 +12,6 @@
             <Color x:Key="PageBackGroundColor">#38323b</Color>
             <Color x:Key="MasterDetailBackColor">#443d47</Color>
             <Color x:Key="BarBackGroundColor">#272329</Color>
-            <Color x:Key="ButtonBackGroundColor">#272329</Color>
             <Color x:Key="FontColor">#a937de</Color>
 
             <Style x:Key="MenuButtonStyle" TargetType="Button">

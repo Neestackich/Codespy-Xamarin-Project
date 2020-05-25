@@ -18,3 +18,5 @@ D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\C
 D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy\obj\Debug\netstandard2.0\SplashPageNew.xaml.g.cs
 D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy\obj\Debug\netstandard2.0\CodeSpy.csproj.CoreCompileInputs.cache
 D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy\obj\Debug\netstandard2.0\XamlC.stamp
+D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy\obj\Debug\netstandard2.0\CodeSpy.Resources.Resource.resources
+D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy\obj\Debug\netstandard2.0\CodeSpy.csproj.GenerateResource.cache

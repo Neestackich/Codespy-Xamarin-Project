@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodeSpy.Activity;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -10,11 +11,42 @@ namespace CodeSpy
 {
     public partial class MainPage : MasterDetailPage
     {
+        public List<MasterPageMenuItem> menuList { get; set; }
+
         public MainPage()
         {
             InitializeComponent();
 
             NavigationPage.SetHasNavigationBar(this, false);
+
+            menuList = new List<MasterPageMenuItem>();
+            menuList.Add(new MasterPageMenuItem()
+            {
+                Title = "Camera",
+                TargetType = typeof(Camera)
+            });
+            menuList.Add(new MasterPageMenuItem()
+            {
+                Title = "Redactor",
+                TargetType = typeof(Redactor)
+            });
+            menuList.Add(new MasterPageMenuItem()
+            {
+                Title = "File manager",
+                TargetType = typeof(FileManaging)
+            });
+            menuList.Add(new MasterPageMenuItem()
+            {
+                Title = "Brouser",
+                TargetType = typeof(Browser)
+            });
+            menuList.Add(new MasterPageMenuItem()
+            {
+                Title = "Settings",
+                TargetType = typeof(Settings)
+            });
+
+            NavigationButtonsList.ItemsSource = menuList;
 
             //страница, которая будет сразу показываться пользователю
             Detail = new NavigationPage(new Redactor())
@@ -25,6 +57,19 @@ namespace CodeSpy
 
              //свойство, показ мастер страницы
              IsPresented = true;
+        }
+
+        private void MenuItem_Click(object sender, SelectedItemChangedEventArgs e)
+        {
+            var item = (MasterPageMenuItem)e.SelectedItem;
+            Type page = item.TargetType;
+            Detail = new NavigationPage((Page)Activator.CreateInstance(page))
+            {
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
+                BarTextColor = (Color)Resources["BarTextColor"]
+            };
+
+            IsPresented = false;
         }
 
         //открываем страницу с камерой

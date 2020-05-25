@@ -8,47 +8,75 @@
     
     <MasterDetailPage.Resources>
         <ResourceDictionary>
+            
             <Color x:Key="PageBackGroundColor">#38323b</Color>
             <Color x:Key="MasterDetailBackColor">#443d47</Color>
             <Color x:Key="BarBackGroundColor">#272329</Color>
-            <Color x:Key="ButtonBackGroundColor">#272329</Color>
-            <Color x:Key="FontColor">#a937de</Color>
+            <Color x:Key="ButtonBackGroundColor">#6507a3</Color>
+            <Color x:Key="MenuItemFontColor">#6507a3</Color>
             <Color x:Key="BarTextColor">#6507a3</Color>
+            
             <x:Double x:Key="FontSize">15</x:Double>
 
             <Style x:Key="MenuButtonStyle" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="{DynamicResource Key=ButtonBackGroundColor}"/>
-                <Setter Property="TextColor" Value="{DynamicResource Key=FontColor}"/>
-                <Setter Property="FontSize" Value="{DynamicResource Key=FontSize}"/>
+                <Setter Property="BackgroundColor" 
+                        Value="{DynamicResource Key=ButtonBackGroundColor}"/>
+                <Setter Property="TextColor" 
+                        Value="{DynamicResource Key=MenuItemFontColor}"/>
+                <Setter Property="FontSize"
+                        Value="{DynamicResource Key=FontSize}"/>
             </Style>
+            
         </ResourceDictionary>
     </MasterDetailPage.Resources>
-    
+
     <MasterDetailPage.Master>
-        <ContentPage Title="Master" BackgroundColor="{DynamicResource Key=MasterDetailBackColor}">
-            <ContentPage.Content>
-                <StackLayout>
-                    <Button Text="Камера" Clicked="CameraButton_Clicked" 
-                            Style="{DynamicResource Key=MenuButtonStyle}"/>
-                    <Button Text="Редактор" Clicked="RedactorButton_Clicked" 
-                            Style="{DynamicResource Key=MenuButtonStyle}"/>
-                    <Button Text="Файл" Clicked="FileManagingButton_Clicked" 
-                            Style="{DynamicResource Key=MenuButtonStyle}"/>
-                    <Button Text="Браузер" Clicked="BrowserButton_Clicked" 
-                            Style="{DynamicResource Key=MenuButtonStyle}"/>
-                    <Button Text="Настройки" Clicked="SettingsButton_Clicked" 
-                            Style="{DynamicResource Key=MenuButtonStyle}"/>
+        <ContentPage Title="Menu">
+            <Grid BackgroundColor="{DynamicResource Key=MasterDetailBackColor}">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="200"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <Grid>
+                    <StackLayout Padding="0,20,0,0" 
+                                 HorizontalOptions="CenterAndExpand" 
+                                 VerticalOptions="CenterAndExpand">
+                        <BoxView 
+                               WidthRequest="185" 
+                               HeightRequest="185" 
+                               CornerRadius="90"
+                               BackgroundColor="{DynamicResource Key=BarTextColor}"/>
+                    </StackLayout>
+                </Grid>
+                
+                <StackLayout Margin="20,20,20,0" Grid.Row="1" Spacing="15">
+                    <ListView x:Name="NavigationButtonsList" RowHeight="60" 
+                              SeparatorVisibility="None" 
+                              BackgroundColor="{DynamicResource Key=MasterDetailBackColor}" 
+                              ItemSelected="MenuItem_Click">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout VerticalOptions="FillAndExpand" 
+                                                 Orientation="Horizontal" 
+                                                 Padding="20,10,0,10" 
+                                                 Spacing="20">
+                                        
+                                        <Label Text="{Binding Title}" 
+                                               FontSize="Medium" 
+                                               VerticalOptions="Center" 
+                                               TextColor="{DynamicResource Key=MenuItemFontColor}"
+                                               BackgroundColor="{DynamicResource Key=MasterDetailBackColor}"/>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
                 </StackLayout>
-            </ContentPage.Content>
+                
+            </Grid>
         </ContentPage>
     </MasterDetailPage.Master>
 
-    <MasterDetailPage.Detail>
-        <ContentPage>
-            <ContentPage.Content>
-                <Label Text="Detail page" />
-            </ContentPage.Content>
-        </ContentPage>
-    </MasterDetailPage.Detail>
-    
 </MasterDetailPage>

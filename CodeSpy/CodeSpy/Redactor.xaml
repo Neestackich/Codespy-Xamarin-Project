@@ -12,8 +12,8 @@
             <Color x:Key="PageBackGroundColor">#4d4552</Color>
             <Color x:Key="MasterDetailBackColor">#443d47</Color>
             <Color x:Key="BarBackGroundColor">#272329</Color>
-            <Color x:Key="ButtonBackGroundColor">#272329</Color>
-            <Color x:Key="FontColor">#a937de</Color>
+            <Color x:Key="RedactorButtonBGColor">#272329</Color>
+            <Color x:Key="RedactorFontColor">#6507a3</Color>
             <Color x:Key="CodeEditorBackground">#18151a</Color>
             <Color x:Key="CodeEditorBorderColor">#6507a3</Color>
 
