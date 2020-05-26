@@ -11,6 +11,7 @@ using Plugin.Connectivity.Abstractions;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Runtime.InteropServices;
 
 namespace CodeSpy
 {
@@ -25,7 +26,15 @@ namespace CodeSpy
 
         Editor codeEditor;
 
-        Frame RoundedEditor;
+        Frame roundedEditor;
+
+        AbsoluteLayout absoluteLayout;
+
+        RelativeLayout relativeLayout;
+
+        ScrollView scrollView;
+
+        StackLayout stackView;
 
         public Redactor()
         {
@@ -35,30 +44,31 @@ namespace CodeSpy
             {
                 sendToUrl = new Button
                 {
-                    Text = "Send",
+                    Text = ">",
                     TextColor = 
                        (Color)Resources["RedactorFontColor"],
                     BackgroundColor = 
                        (Color)Resources["RedactorButtonBGColor"],
-                    CornerRadius = 20,
-                    HeightRequest = 40,
-                    WidthRequest = 40,
-                    BorderWidth = 2,
+                    CornerRadius = 25,
+                    HeightRequest = 50,
+                    WidthRequest = 50,
+                    BorderWidth = 1,
                     BorderColor = (Color)Resources["CodeEditorBorderColor"]
                 };
                 sendToUrl.Clicked += SendContent_ButtonClick;
 
                 codeEditor = new Editor
                 {
-                    HeightRequest = 400,
                     FontFamily = "Consolas",
+                    Text = new string('\n', 14),
                     AutoSize = EditorAutoSizeOption.TextChanges,
                     BackgroundColor =
                         (Color)Resources["CodeEditorBackground"]
                 };
 
-                RoundedEditor = new Frame
+                roundedEditor = new Frame
                 {
+                    Margin = new Thickness(20, 3, 3, 66),
                     Padding = 10,
                     CornerRadius = 20,
                     BackgroundColor = 
@@ -70,14 +80,38 @@ namespace CodeSpy
                        (Color)Resources["CodeEditorBorderColor"]
                 };
 
-                Content = new ScrollView
-                {
-                    Content = new StackLayout
-                    {
-                        Padding = 3,
-                        Children = { RoundedEditor, sendToUrl }
-                    }
-                };
+                absoluteLayout = new AbsoluteLayout();
+
+                relativeLayout = new RelativeLayout();
+
+                scrollView = new ScrollView();
+
+                stackView = new StackLayout();
+
+                stackView.Children.Add(roundedEditor);
+
+                scrollView.Content = stackView;
+
+                //ресайз 
+                relativeLayout.Children.Add(scrollView,
+                    xConstraint: Constraint.Constant(0),
+                    yConstraint: Constraint.Constant(0),
+                    widthConstraint: Constraint.RelativeToParent((parent) => 
+                    { return parent.Width; }),
+                    heightConstraint: Constraint.RelativeToParent((parent) => 
+                    { return parent.Height; }));
+
+                //кнопка
+                sendToUrl.HorizontalOptions = LayoutOptions.End;
+                sendToUrl.VerticalOptions = LayoutOptions.CenterAndExpand;
+
+                AbsoluteLayout.SetLayoutBounds(sendToUrl, new Rectangle(0.97, 0.98, 50, 50));
+                AbsoluteLayout.SetLayoutFlags(sendToUrl, AbsoluteLayoutFlags.PositionProportional);
+
+                absoluteLayout.Children.Add(relativeLayout);
+                absoluteLayout.Children.Add(sendToUrl);
+
+                Content = absoluteLayout;
             }
             else
             {
@@ -113,41 +147,74 @@ namespace CodeSpy
             {
                 sendToUrl = new Button
                 {
-                    Text = "Send",
-                    TextColor = (Color)Resources["FontColor"]
+                    Text = ">",
+                    TextColor =
+                       (Color)Resources["RedactorFontColor"],
+                    BackgroundColor =
+                       (Color)Resources["RedactorButtonBGColor"],
+                    CornerRadius = 25,
+                    HeightRequest = 50,
+                    WidthRequest = 50,
+                    BorderWidth = 1,
+                    BorderColor = (Color)Resources["CodeEditorBorderColor"]
                 };
                 sendToUrl.Clicked += SendContent_ButtonClick;
 
                 codeEditor = new Editor
                 {
-                    HeightRequest = 400,
                     FontFamily = "Consolas",
+                    Text = new string('\n', 14),
                     AutoSize = EditorAutoSizeOption.TextChanges,
                     BackgroundColor =
                         (Color)Resources["CodeEditorBackground"]
                 };
 
-                RoundedEditor = new Frame
+                roundedEditor = new Frame
                 {
+                    Margin = new Thickness(20, 3, 3, 66),
                     Padding = 10,
                     CornerRadius = 20,
                     BackgroundColor =
-                        (Color)Resources["CodeEditorBackground"],
+                       (Color)Resources["CodeEditorBackground"],
                     IsClippedToBounds = true,
                     HasShadow = false,
-                    Content = codeEditor
+                    Content = codeEditor,
+                    BorderColor =
+                       (Color)Resources["CodeEditorBorderColor"]
                 };
-                RoundedEditor.BorderColor =
-                        (Color)Resources["CodeEditorBorderColor"];
 
-                Content = new ScrollView
-                {
-                    Content = new StackLayout
-                    {
-                        Padding = 3,
-                        Children = { RoundedEditor, sendToUrl }
-                    }
-                };
+                absoluteLayout = new AbsoluteLayout();
+
+                relativeLayout = new RelativeLayout();
+
+                scrollView = new ScrollView();
+
+                stackView = new StackLayout();
+
+                stackView.Children.Add(roundedEditor);
+
+                scrollView.Content = stackView;
+
+                //ресайз 
+                relativeLayout.Children.Add(scrollView,
+                    xConstraint: Constraint.Constant(0),
+                    yConstraint: Constraint.Constant(0),
+                    widthConstraint: Constraint.RelativeToParent((parent) =>
+                    { return parent.Width; }),
+                    heightConstraint: Constraint.RelativeToParent((parent) =>
+                    { return parent.Height; }));
+
+                //кнопка
+                sendToUrl.HorizontalOptions = LayoutOptions.End;
+                sendToUrl.VerticalOptions = LayoutOptions.CenterAndExpand;
+
+                AbsoluteLayout.SetLayoutBounds(sendToUrl, new Rectangle(0.97, 0.98, 50, 50));
+                AbsoluteLayout.SetLayoutFlags(sendToUrl, AbsoluteLayoutFlags.PositionProportional);
+
+                absoluteLayout.Children.Add(relativeLayout);
+                absoluteLayout.Children.Add(sendToUrl);
+
+                Content = absoluteLayout;
             }
             else
             {

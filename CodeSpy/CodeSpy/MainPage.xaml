@@ -5,78 +5,112 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="CodeSpy.MainPage" >
-    
+
     <MasterDetailPage.Resources>
         <ResourceDictionary>
             
             <Color x:Key="PageBackGroundColor">#38323b</Color>
             <Color x:Key="MasterDetailBackColor">#443d47</Color>
             <Color x:Key="BarBackGroundColor">#272329</Color>
-            <Color x:Key="ButtonBackGroundColor">#6507a3</Color>
-            <Color x:Key="MenuItemFontColor">#6507a3</Color>
+            <Color x:Key="ButtonBackGroundColor">#272329</Color>
+            <Color x:Key="FontColor">#6507a3</Color>
             <Color x:Key="BarTextColor">#6507a3</Color>
-            
+            <Color x:Key="MainButtonBorderColor">#6507a3</Color>
             <x:Double x:Key="FontSize">15</x:Double>
 
             <Style x:Key="MenuButtonStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" 
                         Value="{DynamicResource Key=ButtonBackGroundColor}"/>
                 <Setter Property="TextColor" 
-                        Value="{DynamicResource Key=MenuItemFontColor}"/>
-                <Setter Property="FontSize"
+                        Value="{DynamicResource Key=FontColor}"/>
+                <Setter Property="FontSize" 
                         Value="{DynamicResource Key=FontSize}"/>
+                <Setter Property="BorderWidth" Value="1"/>
+                <Setter Property="BorderColor" 
+                        Value="{DynamicResource Key=MainButtonBorderColor}"/>
+                <Setter Property="CornerRadius" Value="20"/>
             </Style>
             
         </ResourceDictionary>
     </MasterDetailPage.Resources>
 
     <MasterDetailPage.Master>
-        <ContentPage Title="Menu">
-            <Grid BackgroundColor="{DynamicResource Key=MasterDetailBackColor}">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="200"/>
-                    <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
+        <ContentPage Title="Master" BackgroundColor="{DynamicResource Key=MasterDetailBackColor}">
+            <ContentPage.Content>
+                <StackLayout>
 
-                <Grid>
-                    <StackLayout Padding="0,20,0,0" 
-                                 HorizontalOptions="CenterAndExpand" 
-                                 VerticalOptions="CenterAndExpand">
-                        <BoxView 
-                               WidthRequest="185" 
-                               HeightRequest="185" 
-                               CornerRadius="90"
-                               BackgroundColor="{DynamicResource Key=BarTextColor}"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                        <Frame BackgroundColor="{DynamicResource Key=FontColor}"
+                               HeightRequest="125" 
+                               WidthRequest="125" 
+                               CornerRadius="100" 
+                               BorderColor="{DynamicResource Key=BarBackGroundColor}"
+                               Margin="20"/>
                     </StackLayout>
-                </Grid>
-                
-                <StackLayout Margin="20,20,20,0" Grid.Row="1" Spacing="15">
-                    <ListView x:Name="NavigationButtonsList" RowHeight="60" 
-                              SeparatorVisibility="None" 
-                              BackgroundColor="{DynamicResource Key=MasterDetailBackColor}" 
-                              ItemSelected="MenuItem_Click">
-                        <ListView.ItemTemplate>
-                            <DataTemplate>
-                                <ViewCell>
-                                    <StackLayout VerticalOptions="FillAndExpand" 
-                                                 Orientation="Horizontal" 
-                                                 Padding="20,10,0,10" 
-                                                 Spacing="20">
-                                        
-                                        <Label Text="{Binding Title}" 
-                                               FontSize="Medium" 
-                                               VerticalOptions="Center" 
-                                               TextColor="{DynamicResource Key=MenuItemFontColor}"
-                                               BackgroundColor="{DynamicResource Key=MasterDetailBackColor}"/>
-                                    </StackLayout>
-                                </ViewCell>
-                            </DataTemplate>
-                        </ListView.ItemTemplate>
-                    </ListView>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Frame BackgroundColor="{DynamicResource Key=FontColor}"
+                               HeightRequest="5" 
+                               WidthRequest="5" 
+                               CornerRadius="100" 
+                               BorderColor="{DynamicResource Key=BarBackGroundColor}"
+                               Margin="2"/>
+                        <Button Text="Камера" Clicked="CameraButton_Clicked" 
+                                HorizontalOptions="FillAndExpand"
+                                Style="{DynamicResource Key=MenuButtonStyle}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Frame BackgroundColor="{DynamicResource Key=FontColor}"
+                               HeightRequest="5" 
+                               WidthRequest="5" 
+                               CornerRadius="100" 
+                               BorderColor="{DynamicResource Key=BarBackGroundColor}"
+                               Margin="2"/>
+                        <Button Text="Редактор" Clicked="RedactorButton_Clicked" 
+                                HorizontalOptions="FillAndExpand"
+                                Style="{DynamicResource Key=MenuButtonStyle}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Frame BackgroundColor="{DynamicResource Key=FontColor}"
+                               HeightRequest="5" 
+                               WidthRequest="5" 
+                               CornerRadius="100" 
+                               BorderColor="{DynamicResource Key=BarBackGroundColor}"
+                               Margin="2"/>
+                        <Button Text="Файл" Clicked="FileManagingButton_Clicked" 
+                                HorizontalOptions="FillAndExpand"
+                                Style="{DynamicResource Key=MenuButtonStyle}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Frame BackgroundColor="{DynamicResource Key=FontColor}"
+                               HeightRequest="5" 
+                               WidthRequest="5" 
+                               CornerRadius="100" 
+                               BorderColor="{DynamicResource Key=BarBackGroundColor}"
+                               Margin="2"/>
+                        <Button Text="Браузер" Clicked="BrowserButton_Clicked" 
+                                HorizontalOptions="FillAndExpand"
+                                Style="{DynamicResource Key=MenuButtonStyle}"/>
+                    </StackLayout>
+
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <Frame BackgroundColor="{DynamicResource Key=FontColor}"
+                               HeightRequest="5" 
+                               WidthRequest="5" 
+                               CornerRadius="100" 
+                               BorderColor="{DynamicResource Key=BarBackGroundColor}"
+                               Margin="2"/>
+                        <Button Text="Настройки" Clicked="SettingsButton_Clicked" 
+                                HorizontalOptions="FillAndExpand"
+                                Style="{DynamicResource Key=MenuButtonStyle}"/>
+                    </StackLayout>
+
                 </StackLayout>
-                
-            </Grid>
+            </ContentPage.Content>
         </ContentPage>
     </MasterDetailPage.Master>
-
+    
 </MasterDetailPage>

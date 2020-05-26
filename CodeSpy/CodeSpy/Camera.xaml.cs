@@ -33,15 +33,21 @@ namespace CodeSpy
             {
                 Capture = new Button
                 {
+                    //чтобы менять размер кнопки нужно задавать их позицию на странице
                     Text = "C",
-                    Style = (Style)Resources["LocalButtonsStyle"]
+                    Style = (Style)Resources["CameraButtonsStyle"],
+                    HorizontalOptions = LayoutOptions.Center,
+                    BorderWidth = 1,
+                    WidthRequest = 40,
+                    HeightRequest = 40
                 };
                 Capture.Clicked += Capture_OnClicked;
 
                 Select = new Button
                 {
                     Text = "+",
-                    Style = (Style)Resources["LocalButtonsStyle"]
+                    Style = (Style)Resources["CameraButtonsStyle"],
+                    BorderWidth = 1
                 };
                 Select.Clicked += Select_OnClicked;
 
@@ -119,14 +125,16 @@ namespace CodeSpy
                 Capture = new Button
                 {
                     Text = "C",
-                    Style = (Style)Resources["LocalButtonsStyle"]
+                    Style = (Style)Resources["CameraButtonsStyle"],
+                    BorderWidth = 1
                 };
                 Capture.Clicked += Capture_OnClicked;
 
                 Select = new Button
                 {
                     Text = "+",
-                    Style = (Style)Resources["LocalButtonsStyle"]
+                    Style = (Style)Resources["CameraButtonsStyle"],
+                    BorderWidth = 1
                 };
                 Select.Clicked += Select_OnClicked;
 
