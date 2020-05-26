@@ -9,21 +9,31 @@ using Plugin.Connectivity.Abstractions;
 
 using Xamarin.Forms;
 using System.Runtime.CompilerServices;
+using System.Collections;
 
 namespace CodeSpy
 {
     public partial class Camera : ContentPage
     {
-        Image Photo;
+        Image photoToShow;
 
-        Frame RoundedPhoto;
-        Frame RoundedText;
+        Frame roundedPhoto;
+        Frame roundedText;
+        Frame roundedFramePhoto;
 
-        Button Capture;
-        Button Select;
+        Button capture;
+        Button select;
 
         Label connectionMessage;
         Label capturedText;
+
+        AbsoluteLayout absoluteLayout;
+
+        RelativeLayout relativeLayout;
+
+        ScrollView scrollView;
+
+        StackLayout stackView;
 
         public Camera()
         {
@@ -31,47 +41,54 @@ namespace CodeSpy
 
             if (CrossConnectivity.Current.IsConnected)
             {
-                Capture = new Button
+                capture = new Button
                 {
                     //чтобы менять размер кнопки нужно задавать их позицию на странице
                     Text = "C",
-                    Style = (Style)Resources["CameraButtonsStyle"],
-                    HorizontalOptions = LayoutOptions.Center,
-                    BorderWidth = 1,
-                    WidthRequest = 40,
-                    HeightRequest = 40
+                    Style = (Style)Resources["CameraButtonsStyle"]
                 };
-                Capture.Clicked += Capture_OnClicked;
+                capture.Clicked += Capture_OnClicked;
 
-                Select = new Button
+                select = new Button
                 {
                     Text = "+",
-                    Style = (Style)Resources["CameraButtonsStyle"],
-                    BorderWidth = 1
+                    Style = (Style)Resources["CameraButtonsStyle"]
                 };
-                Select.Clicked += Select_OnClicked;
+                select.Clicked += Select_OnClicked;
 
                 capturedText = new Label
                 {
                     TextColor = (Color)Resources["FontColor"]
                 };
 
-                Photo = new Image();
+                photoToShow = new Image();
 
-                RoundedPhoto = new Frame
+                roundedPhoto = new Frame
                 {
+                    Margin = 3,
                     Padding = 0,
                     CornerRadius = 20,
                     BackgroundColor = (Color)Resources["PageBackGroundColor"],
                     IsClippedToBounds = true,
                     HasShadow = false,
-                    Content = Photo
+                    Content = photoToShow
                 };
 
-                RoundedText = new Frame
+                roundedFramePhoto = new Frame
                 {
-                    Margin = 0,
-                    Padding = 5,
+                    Margin = 3,
+                    Padding = 1,
+                    CornerRadius = 20,
+                    BackgroundColor = (Color)Resources["PageBackGroundColor"],
+                    IsClippedToBounds = true,
+                    HasShadow = false,
+                    Content = roundedPhoto
+                };
+
+                roundedText = new Frame
+                {
+                    Margin = new Thickness(3, 3, 3, 66),
+                    Padding = 8,
                     CornerRadius = 20,
                     BackgroundColor = (Color)Resources["PageBackGroundColor"],
                     IsClippedToBounds = true,
@@ -79,14 +96,41 @@ namespace CodeSpy
                     Content = capturedText
                 };
 
-                Content = new ScrollView
-                {
-                    Content = new StackLayout
-                    {
-                        Padding = 3,
-                        Children = { Capture, Select, RoundedPhoto, RoundedText }
-                    }
-                };
+                absoluteLayout = new AbsoluteLayout();
+
+                relativeLayout = new RelativeLayout();
+
+                scrollView = new ScrollView();
+
+                stackView = new StackLayout();
+                stackView.Children.Add(roundedFramePhoto);
+                stackView.Children.Add(roundedText);
+
+                scrollView.Content = stackView;
+
+                relativeLayout.Children.Add(scrollView,
+                    xConstraint: Constraint.Constant(0),
+                    yConstraint: Constraint.Constant(0),
+                    widthConstraint: Constraint.RelativeToParent((parent) =>
+                    { return parent.Width; }),
+                    heightConstraint: Constraint.RelativeToParent((parent) =>
+                    { return parent.Height; }));
+
+                AbsoluteLayout.SetLayoutBounds(capture, 
+                    new Rectangle(0.97, 0.98, 50, 50));
+                AbsoluteLayout.SetLayoutFlags(capture, 
+                    AbsoluteLayoutFlags.PositionProportional);
+
+                AbsoluteLayout.SetLayoutBounds(select,
+                   new Rectangle(0.77, 0.98, 50, 50));
+                AbsoluteLayout.SetLayoutFlags(select,
+                    AbsoluteLayoutFlags.PositionProportional);
+
+                absoluteLayout.Children.Add(relativeLayout);
+                absoluteLayout.Children.Add(capture);
+                absoluteLayout.Children.Add(select);
+
+                Content = absoluteLayout;
             }
             else
             {
@@ -97,7 +141,7 @@ namespace CodeSpy
                     VerticalOptions = LayoutOptions.Center
                 };
 
-                Content = new StackLayout
+                Content = new AbsoluteLayout
                 {
                     Padding = 3,
                     Children = { connectionMessage }
@@ -120,44 +164,56 @@ namespace CodeSpy
 
         private void ConnectivityCheck()
         {
-            if(CrossConnectivity.Current.IsConnected)
+            if (CrossConnectivity.Current.IsConnected)
             {
-                Capture = new Button
+                capture = new Button
                 {
+                    //чтобы менять размер кнопки нужно задавать их позицию на странице
                     Text = "C",
-                    Style = (Style)Resources["CameraButtonsStyle"],
-                    BorderWidth = 1
+                    Style = (Style)Resources["CameraButtonsStyle"]
                 };
-                Capture.Clicked += Capture_OnClicked;
+                capture.Clicked += Capture_OnClicked;
 
-                Select = new Button
+                select = new Button
                 {
                     Text = "+",
-                    Style = (Style)Resources["CameraButtonsStyle"],
-                    BorderWidth = 1
+                    Style = (Style)Resources["CameraButtonsStyle"]
                 };
-                Select.Clicked += Select_OnClicked;
+                select.Clicked += Select_OnClicked;
 
                 capturedText = new Label
                 {
                     TextColor = (Color)Resources["FontColor"]
                 };
 
-                Photo = new Image();
+                photoToShow = new Image();
 
-                RoundedPhoto = new Frame
+                roundedPhoto = new Frame
                 {
+                    Margin = 3,
                     Padding = 0,
                     CornerRadius = 20,
                     BackgroundColor = (Color)Resources["PageBackGroundColor"],
                     IsClippedToBounds = true,
                     HasShadow = false,
-                    Content = Photo
+                    Content = photoToShow
                 };
 
-                RoundedText = new Frame
+                roundedFramePhoto = new Frame
                 {
-                    Padding = 5,
+                    Margin = 3,
+                    Padding = 1,
+                    CornerRadius = 20,
+                    BackgroundColor = (Color)Resources["PageBackGroundColor"],
+                    IsClippedToBounds = true,
+                    HasShadow = false,
+                    Content = roundedPhoto
+                };
+
+                roundedText = new Frame
+                {
+                    Margin = new Thickness(3, 3, 3, 66),
+                    Padding = 8,
                     CornerRadius = 20,
                     BackgroundColor = (Color)Resources["PageBackGroundColor"],
                     IsClippedToBounds = true,
@@ -165,14 +221,41 @@ namespace CodeSpy
                     Content = capturedText
                 };
 
-                Content = new ScrollView
-                {
-                    Content = new StackLayout
-                    {
-                        Padding = 3,
-                        Children = { Capture, Select, RoundedPhoto, RoundedText }
-                    }
-                };
+                absoluteLayout = new AbsoluteLayout();
+
+                relativeLayout = new RelativeLayout();
+
+                scrollView = new ScrollView();
+
+                stackView = new StackLayout();
+                stackView.Children.Add(roundedFramePhoto);
+                stackView.Children.Add(roundedText);
+
+                scrollView.Content = stackView;
+
+                relativeLayout.Children.Add(scrollView,
+                    xConstraint: Constraint.Constant(0),
+                    yConstraint: Constraint.Constant(0),
+                    widthConstraint: Constraint.RelativeToParent((parent) =>
+                    { return parent.Width; }),
+                    heightConstraint: Constraint.RelativeToParent((parent) =>
+                    { return parent.Height; }));
+
+                AbsoluteLayout.SetLayoutBounds(capture,
+                    new Rectangle(0.97, 0.98, 50, 50));
+                AbsoluteLayout.SetLayoutFlags(capture,
+                    AbsoluteLayoutFlags.PositionProportional);
+
+                AbsoluteLayout.SetLayoutBounds(select,
+                   new Rectangle(0.77, 0.98, 50, 50));
+                AbsoluteLayout.SetLayoutFlags(select,
+                    AbsoluteLayoutFlags.PositionProportional);
+
+                absoluteLayout.Children.Add(relativeLayout);
+                absoluteLayout.Children.Add(capture);
+                absoluteLayout.Children.Add(select);
+
+                Content = absoluteLayout;
             }
             else
             {
@@ -183,7 +266,7 @@ namespace CodeSpy
                     VerticalOptions = LayoutOptions.Center
                 };
 
-                Content = new StackLayout
+                Content = new AbsoluteLayout
                 {
                     Padding = 3,
                     Children = { connectionMessage }
@@ -193,11 +276,18 @@ namespace CodeSpy
 
         public void Clear()
         {
-            Photo.Source = null;
+            photoToShow.Source = null;
 
             capturedText.Text = null;
 
-            RoundedText.BackgroundColor =
+            roundedText.BorderColor =
+                (Color)Resources["PageBackGroundColor"];
+            roundedText.BackgroundColor =
+                (Color)Resources["PageBackGroundColor"];
+
+            roundedFramePhoto.BackgroundColor =
+                    (Color)Resources["PageBackGroundColor"];
+            roundedFramePhoto.BorderColor =
                 (Color)Resources["PageBackGroundColor"];
         }
 
@@ -235,13 +325,18 @@ namespace CodeSpy
                     photo.GetStreamWithImageRotatedForExternalStorage());
 
                 Device.BeginInvokeOnMainThread(() => capturedText.Text = text);
+
+                roundedText.BackgroundColor =
+                    (Color)Resources["CodeEditorBackground"];
+                roundedText.BorderColor =
+                    (Color)Resources["ExtractedTextBorderColor"];
             });
 
-            Photo.Source = ImageSource.FromStream(photo.GetStream);
+            photoToShow.Source = ImageSource.FromStream(photo.GetStream);
 
-            RoundedText.BackgroundColor =
-                (Color)Resources["CodeEditorBackground"];
-            RoundedText.BorderColor = 
+            roundedFramePhoto.BackgroundColor =
+                    (Color)Resources["CodeEditorBackground"];
+            roundedFramePhoto.BorderColor =
                 (Color)Resources["ExtractedTextBorderColor"];
         }
     }

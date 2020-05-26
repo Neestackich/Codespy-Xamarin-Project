@@ -22,12 +22,13 @@
                 <Setter Property="BackgroundColor" 
                         Value="{DynamicResource Key=ButtonBackGroundColor}"/>
                 <Setter Property="TextColor" Value="#272329"/>
-                <Setter Property="FontSize" Value="Medium"/>
-                <Setter Property="WidthRequest" Value="110"/>
-                <Setter Property="HeightRequest" Value="110"/>
+                <Setter Property="FontSize" Value="15"/>
                 <Setter Property="BorderColor"
                         Value="{DynamicResource Key=ExtractedTextBorderColor}"/>
-                <Setter Property="CornerRadius" Value="60"/>
+                <Setter Property="BorderWidth" Value ="1"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="WidthRequest" Value="50"/>
             </Style>
 
         </ResourceDictionary>

@@ -9,6 +9,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
+            
             <Color x:Key="PageBackGroundColor">#4d4552</Color>
             <Color x:Key="MasterDetailBackColor">#443d47</Color>
             <Color x:Key="BarBackGroundColor">#272329</Color>
@@ -17,11 +18,19 @@
             <Color x:Key="CodeEditorBackground">#18151a</Color>
             <Color x:Key="CodeEditorBorderColor">#6507a3</Color>
 
-            <Style x:Key="MenuButtonStyle" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#272329"/>
-                <Setter Property="TextColor" Value="#94849c"/>
-                <Setter Property="FontSize" Value="Large"/>
+            <Style x:Key="RedactorButtonsStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" 
+                        Value="{DynamicResource Key=ButtonBackGroundColor}"/>
+                <Setter Property="TextColor" Value="#272329"/>
+                <Setter Property="FontSize" Value="15"/>
+                <Setter Property="BorderColor"
+                        Value="{DynamicResource Key=CodeEditorBorderColor}"/>
+                <Setter Property="BorderWidth" Value ="1"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="WidthRequest" Value="50"/>
             </Style>
+            
         </ResourceDictionary>
     </ContentPage.Resources>
 

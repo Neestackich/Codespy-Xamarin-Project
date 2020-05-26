@@ -45,15 +45,7 @@ namespace CodeSpy
                 sendToUrl = new Button
                 {
                     Text = ">",
-                    TextColor = 
-                       (Color)Resources["RedactorFontColor"],
-                    BackgroundColor = 
-                       (Color)Resources["RedactorButtonBGColor"],
-                    CornerRadius = 25,
-                    HeightRequest = 50,
-                    WidthRequest = 50,
-                    BorderWidth = 1,
-                    BorderColor = (Color)Resources["CodeEditorBorderColor"]
+                    Style = (Style)Resources["RedactorButtonsStyle"]
                 };
                 sendToUrl.Clicked += SendContent_ButtonClick;
 
@@ -148,15 +140,7 @@ namespace CodeSpy
                 sendToUrl = new Button
                 {
                     Text = ">",
-                    TextColor =
-                       (Color)Resources["RedactorFontColor"],
-                    BackgroundColor =
-                       (Color)Resources["RedactorButtonBGColor"],
-                    CornerRadius = 25,
-                    HeightRequest = 50,
-                    WidthRequest = 50,
-                    BorderWidth = 1,
-                    BorderColor = (Color)Resources["CodeEditorBorderColor"]
+                    Style = (Style)Resources["RedactorButtonsStyle"]
                 };
                 sendToUrl.Clicked += SendContent_ButtonClick;
 
