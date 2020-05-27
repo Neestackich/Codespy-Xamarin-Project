@@ -23,10 +23,12 @@ namespace CodeSpy
         Button sendToUrl;
 
         Label connectionMessage;
+        Label stringNumberBar;
 
         Editor codeEditor;
 
         Frame roundedEditor;
+        Frame roundedStringNumberBar;
 
         AbsoluteLayout absoluteLayout;
 
@@ -69,14 +71,38 @@ namespace CodeSpy
                 {
                     FontFamily = "Consolas",
                     Text = new string('\n', 22),
+                    TextColor = (Color)Resources["CodeEditorTextColor"],
                     AutoSize = EditorAutoSizeOption.TextChanges,
                     BackgroundColor =
                         (Color)Resources["CodeEditorBackground"]
                 };
+                codeEditor.TextChanged += StringNumberBar_Change;
+
+                stringNumberBar = new Label
+                {
+                    TextColor = (Color)Resources["CodeEditorTextColor"],
+                    FontSize = codeEditor.FontSize
+                };
+
+                roundedStringNumberBar = new Frame
+                {
+                    Margin = new Thickness(3, 3, -1, 80),
+                    Padding = 3,
+                    CornerRadius = 20,
+                    IsClippedToBounds = true,
+                    HasShadow = false,
+                    BorderColor =
+                       (Color)Resources["CodeEditorBorderColor"],
+                    BackgroundColor =
+                       (Color)Resources["CodeEditorBackground"],
+                    Content = stringNumberBar
+                };
+
+                NumberBarFilling();
 
                 roundedEditor = new Frame
                 {
-                    Margin = new Thickness(20, 3, 3, 80),
+                    Margin = new Thickness(0, 3, 3, 80),
                     Padding = 10,
                     CornerRadius = 20,
                     BackgroundColor =
@@ -94,8 +120,13 @@ namespace CodeSpy
 
                 scrollView = new ScrollView();
 
-                stackView = new StackLayout();
+                stackView = new StackLayout
+                {
+                    Orientation = StackOrientation.Horizontal,
+                    HorizontalOptions = LayoutOptions.FillAndExpand
+                };
 
+                stackView.Children.Add(roundedStringNumberBar);
                 stackView.Children.Add(roundedEditor);
 
                 scrollView.Content = stackView;
@@ -136,6 +167,32 @@ namespace CodeSpy
                     Children = { connectionMessage }
                 };
             };
+        }
+
+        private void NumberBarFilling()
+        {
+            int enterCounter;
+            enterCounter = 2;
+
+            for (int i = 0; i < codeEditor.Text.Length; i++)
+            {
+                if (codeEditor.Text[i] == '\n')
+                {
+                    enterCounter++;
+                }
+            }
+
+            stringNumberBar.Text = null;
+
+            for (int i = 1; i <= enterCounter; i++)
+            {
+                stringNumberBar.Text += $"{i}\n";
+            }
+        }
+
+        private void StringNumberBar_Change(object sender, TextChangedEventArgs e)
+        {
+            NumberBarFilling();
         }
 
         private async void SendContent_ButtonClick(object sender, EventArgs e)

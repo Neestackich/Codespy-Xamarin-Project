@@ -18,6 +18,7 @@
             <Color x:Key="RedactorFontColor">#6507a3</Color>
             <Color x:Key="CodeEditorBackground">#18151a</Color>
             <Color x:Key="CodeEditorBorderColor">#6507a3</Color>
+            <Color x:Key="CodeEditorTextColor">#b9acc2</Color>
 
             <Style x:Key="RedactorButtonsStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" 
