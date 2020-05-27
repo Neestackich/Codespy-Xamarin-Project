@@ -39,6 +39,7 @@ namespace CodeSpy
         StackLayout stackView;
 
         int stringCounter;
+        int textSize;
 
         public Redactor()
         {
@@ -72,7 +73,7 @@ namespace CodeSpy
                 codeEditor = new Editor
                 {
                     FontFamily = "Consolas",
-                    Text = new string('\n', 22),
+                    Text = new string('\n', 21),
                     TextColor = (Color)Resources["CodeEditorTextColor"],
                     AutoSize = EditorAutoSizeOption.TextChanges,
                     BackgroundColor =
@@ -82,7 +83,7 @@ namespace CodeSpy
 
                 stringNumberBar = new Label
                 {
-                    TextColor = (Color)Resources["CodeEditorTextColor"],
+                    TextColor = (Color)Resources["NumberBarTextColor"],
                     FontSize = codeEditor.FontSize,
                     HorizontalOptions = LayoutOptions.Center
                 };
@@ -90,7 +91,7 @@ namespace CodeSpy
                 roundedStringNumberBar = new Frame
                 {
                     Margin = new Thickness(3, 3, -1, 64),
-                    Padding = new Thickness(6, 6, 1, 10),
+                    Padding = new Thickness(6, 17, 1, 10),
                     CornerRadius = 20,
                     IsClippedToBounds = true,
                     HasShadow = false,
@@ -107,7 +108,7 @@ namespace CodeSpy
                 roundedEditor = new Frame
                 {
                     Margin = new Thickness(0, 3, 3, 64),
-                    Padding = 10,
+                    Padding = new Thickness(7, 7, 7, 30),
                     CornerRadius = 20,
                     BackgroundColor =
                        (Color)Resources["CodeEditorBackground"],
@@ -123,7 +124,10 @@ namespace CodeSpy
 
                 relativeLayout = new RelativeLayout();
 
-                scrollView = new ScrollView();
+                scrollView = new ScrollView
+                {
+                    Orientation = ScrollOrientation.Both
+                };
 
                 stackView = new StackLayout
                 {
@@ -176,7 +180,8 @@ namespace CodeSpy
 
         private void NumberBarFilling()
         {
-            stringCounter = 2;
+            stringCounter = 1;
+            textSize = codeEditor.Text.Length;
 
             for (int i = 0; i < codeEditor.Text.Length; i++)
             {
@@ -196,23 +201,12 @@ namespace CodeSpy
 
         private void StringNumberBar_Change(object sender, TextChangedEventArgs e)
         {
-            if (codeEditor.Text[codeEditor.Text.Length - 1] == '\n')
-            {
-                stringCounter++;
-            }
-
-            stringNumberBar.Text = null;
-
-            for (int i = 1; i <= stringCounter; i++)
-            {
-                stringNumberBar.Text += $"{i}\n";
-            }
+            NumberBarFilling();
         }
 
         private async void SendContent_ButtonClick(object sender, EventArgs e)
         {
             jdoodle.SendMessage(codeEditor.Text);
-
 
             await DisplayAlert("Compiler message", $"Result: {jdoodle.compilerResult.output}\n" +
                 $"Status code: {jdoodle.compilerResult.statusCode}\n" +
