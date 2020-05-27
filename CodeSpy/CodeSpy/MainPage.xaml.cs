@@ -10,31 +10,64 @@ namespace CodeSpy
 {
     public partial class MainPage : MasterDetailPage
     {
+        NavigationPage redactor;
+        NavigationPage camera;
+        NavigationPage fileManager;
+        NavigationPage browser;
+        NavigationPage settings;
+
         public MainPage()
         {
             InitializeComponent();
 
             NavigationPage.SetHasNavigationBar(this, false);
 
+            Linking();
+
             //страница, которая будет сразу показываться пользователю
-            Detail = new NavigationPage(new Redactor())
-            {
-                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
-                BarTextColor = (Color)Resources["BarTextColor"]
-            };
+            Detail = redactor;
 
             //свойство, показ мастер страницы
             IsPresented = true;
         }
 
-        //открываем страницу с камерой
-        private void CameraButton_Clicked(object sender, EventArgs e)
+        private void Linking()
         {
-            Detail = new NavigationPage(new Camera())
+            redactor = new NavigationPage(new Redactor())
             {
                 BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
                 BarTextColor = (Color)Resources["BarTextColor"]
             };
+
+            camera = new NavigationPage(new Camera())
+            {
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
+                BarTextColor = (Color)Resources["BarTextColor"]
+            };
+
+            fileManager = new NavigationPage(new FileManaging())
+            {
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
+                BarTextColor = (Color)Resources["BarTextColor"]
+            };
+
+            browser = new NavigationPage(new Browser())
+            {
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
+                BarTextColor = (Color)Resources["BarTextColor"]
+            };
+
+            settings = new NavigationPage(new Settings())
+            {
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
+                BarTextColor = (Color)Resources["BarTextColor"]
+            };
+        }
+
+        //открываем страницу с камерой
+        private void CameraButton_Clicked(object sender, EventArgs e)
+        {
+            Detail = camera;
 
             //чтоб меню пропадало
             IsPresented = false;
@@ -43,11 +76,7 @@ namespace CodeSpy
         //открываем страницу с редактором
         private void RedactorButton_Clicked(object sender, EventArgs e)
         {
-            Detail = new NavigationPage(new Redactor())
-            {
-                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
-                BarTextColor = (Color)Resources["BarTextColor"]
-            };
+            Detail = redactor;
 
             IsPresented = false;
         }
@@ -55,11 +84,7 @@ namespace CodeSpy
         //открываем страницу с менеджером файлов
         private void FileManagingButton_Clicked(object sender, EventArgs e)
         {
-            Detail = new NavigationPage(new FileManaging())
-            {
-                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
-                BarTextColor = (Color)Resources["BarTextColor"]
-            };
+            Detail = fileManager;
 
             IsPresented = false;
         }
@@ -67,11 +92,7 @@ namespace CodeSpy
         //открываем страницу с браузером
         private void BrowserButton_Clicked(object sender, EventArgs e)
         {
-            Detail = new NavigationPage(new Browser())
-            {
-                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
-                BarTextColor = (Color)Resources["BarTextColor"]
-            };
+            Detail = browser;
 
             IsPresented = false;
         }
@@ -79,11 +100,7 @@ namespace CodeSpy
         //открываем страницу с настройками
         private void SettingsButton_Clicked(object sender, EventArgs e)
         {
-            Detail = new NavigationPage(new Settings())
-            {
-                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
-                BarTextColor = (Color)Resources["BarTextColor"]
-            };
+            Detail = settings;
 
             IsPresented = false;
         }

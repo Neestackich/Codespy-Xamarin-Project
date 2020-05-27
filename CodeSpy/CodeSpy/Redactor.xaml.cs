@@ -40,86 +40,7 @@ namespace CodeSpy
         {
             InitializeComponent();
 
-            if (CrossConnectivity.Current.IsConnected)
-            {
-                sendToUrl = new Button
-                {
-                    Text = ">",
-                    Style = (Style)Resources["RedactorButtonsStyle"]
-                };
-                sendToUrl.Clicked += SendContent_ButtonClick;
-
-                codeEditor = new Editor
-                {
-                    FontFamily = "Consolas",
-                    Text = new string('\n', 14),
-                    AutoSize = EditorAutoSizeOption.TextChanges,
-                    BackgroundColor =
-                        (Color)Resources["CodeEditorBackground"]
-                };
-
-                roundedEditor = new Frame
-                {
-                    Margin = new Thickness(20, 3, 3, 66),
-                    Padding = 10,
-                    CornerRadius = 20,
-                    BackgroundColor = 
-                       (Color)Resources["CodeEditorBackground"],
-                    IsClippedToBounds = true,
-                    HasShadow = false,
-                    Content = codeEditor,
-                    BorderColor =
-                       (Color)Resources["CodeEditorBorderColor"]
-                };
-
-                absoluteLayout = new AbsoluteLayout();
-
-                relativeLayout = new RelativeLayout();
-
-                scrollView = new ScrollView();
-
-                stackView = new StackLayout();
-
-                stackView.Children.Add(roundedEditor);
-
-                scrollView.Content = stackView;
-
-                //ресайз 
-                relativeLayout.Children.Add(scrollView,
-                    xConstraint: Constraint.Constant(0),
-                    yConstraint: Constraint.Constant(0),
-                    widthConstraint: Constraint.RelativeToParent((parent) => 
-                    { return parent.Width; }),
-                    heightConstraint: Constraint.RelativeToParent((parent) => 
-                    { return parent.Height; }));
-
-                //кнопка
-                sendToUrl.HorizontalOptions = LayoutOptions.End;
-                sendToUrl.VerticalOptions = LayoutOptions.CenterAndExpand;
-
-                AbsoluteLayout.SetLayoutBounds(sendToUrl, new Rectangle(0.97, 0.98, 50, 50));
-                AbsoluteLayout.SetLayoutFlags(sendToUrl, AbsoluteLayoutFlags.PositionProportional);
-
-                absoluteLayout.Children.Add(relativeLayout);
-                absoluteLayout.Children.Add(sendToUrl);
-
-                Content = absoluteLayout;
-            }
-            else
-            {
-                connectionMessage = new Label
-                {
-                    Text = "Подключение отсутствует",
-                    HorizontalOptions = LayoutOptions.Center,
-                    VerticalOptions = LayoutOptions.Center
-                };
-
-                Content = new StackLayout
-                {
-                    Padding = 3,
-                    Children = { connectionMessage }
-                };
-            };
+            ConnectivityCheck();
 
             CrossConnectivity.Current.ConnectivityChanged +=
                 Current_ConnectivityChanged;
@@ -147,7 +68,7 @@ namespace CodeSpy
                 codeEditor = new Editor
                 {
                     FontFamily = "Consolas",
-                    Text = new string('\n', 14),
+                    Text = new string('\n', 22),
                     AutoSize = EditorAutoSizeOption.TextChanges,
                     BackgroundColor =
                         (Color)Resources["CodeEditorBackground"]
@@ -155,7 +76,7 @@ namespace CodeSpy
 
                 roundedEditor = new Frame
                 {
-                    Margin = new Thickness(20, 3, 3, 66),
+                    Margin = new Thickness(20, 3, 3, 80),
                     Padding = 10,
                     CornerRadius = 20,
                     BackgroundColor =

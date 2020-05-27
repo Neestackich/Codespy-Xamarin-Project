@@ -39,114 +39,7 @@ namespace CodeSpy
         {
             InitializeComponent();
 
-            if (CrossConnectivity.Current.IsConnected)
-            {
-                capture = new Button
-                {
-                    //чтобы менять размер кнопки нужно задавать их позицию на странице
-                    Text = "C",
-                    Style = (Style)Resources["CameraButtonsStyle"]
-                };
-                capture.Clicked += Capture_OnClicked;
-
-                select = new Button
-                {
-                    Text = "+",
-                    Style = (Style)Resources["CameraButtonsStyle"]
-                };
-                select.Clicked += Select_OnClicked;
-
-                capturedText = new Label
-                {
-                    TextColor = (Color)Resources["FontColor"]
-                };
-
-                photoToShow = new Image();
-
-                roundedPhoto = new Frame
-                {
-                    Margin = 3,
-                    Padding = 0,
-                    CornerRadius = 20,
-                    BackgroundColor = (Color)Resources["PageBackGroundColor"],
-                    IsClippedToBounds = true,
-                    HasShadow = false,
-                    Content = photoToShow
-                };
-
-                roundedFramePhoto = new Frame
-                {
-                    Margin = 3,
-                    Padding = 1,
-                    CornerRadius = 20,
-                    BackgroundColor = (Color)Resources["PageBackGroundColor"],
-                    IsClippedToBounds = true,
-                    HasShadow = false,
-                    Content = roundedPhoto
-                };
-
-                roundedText = new Frame
-                {
-                    Margin = new Thickness(3, 3, 3, 66),
-                    Padding = 8,
-                    CornerRadius = 20,
-                    BackgroundColor = (Color)Resources["PageBackGroundColor"],
-                    IsClippedToBounds = true,
-                    HasShadow = false,
-                    Content = capturedText
-                };
-
-                absoluteLayout = new AbsoluteLayout();
-
-                relativeLayout = new RelativeLayout();
-
-                scrollView = new ScrollView();
-
-                stackView = new StackLayout();
-                stackView.Children.Add(roundedFramePhoto);
-                stackView.Children.Add(roundedText);
-
-                scrollView.Content = stackView;
-
-                relativeLayout.Children.Add(scrollView,
-                    xConstraint: Constraint.Constant(0),
-                    yConstraint: Constraint.Constant(0),
-                    widthConstraint: Constraint.RelativeToParent((parent) =>
-                    { return parent.Width; }),
-                    heightConstraint: Constraint.RelativeToParent((parent) =>
-                    { return parent.Height; }));
-
-                AbsoluteLayout.SetLayoutBounds(capture, 
-                    new Rectangle(0.97, 0.98, 50, 50));
-                AbsoluteLayout.SetLayoutFlags(capture, 
-                    AbsoluteLayoutFlags.PositionProportional);
-
-                AbsoluteLayout.SetLayoutBounds(select,
-                   new Rectangle(0.77, 0.98, 50, 50));
-                AbsoluteLayout.SetLayoutFlags(select,
-                    AbsoluteLayoutFlags.PositionProportional);
-
-                absoluteLayout.Children.Add(relativeLayout);
-                absoluteLayout.Children.Add(capture);
-                absoluteLayout.Children.Add(select);
-
-                Content = absoluteLayout;
-            }
-            else
-            {
-                connectionMessage = new Label
-                {
-                    Text = "Подключение отсутствует",
-                    HorizontalOptions = LayoutOptions.Center,
-                    VerticalOptions = LayoutOptions.Center
-                };
-
-                Content = new AbsoluteLayout
-                {
-                    Padding = 3,
-                    Children = { connectionMessage }
-                };
-            };
+            ConnectivityCheck();
 
             //проверяет подключение
             //если подключение есть - появляются кнопки и прочее
@@ -168,7 +61,6 @@ namespace CodeSpy
             {
                 capture = new Button
                 {
-                    //чтобы менять размер кнопки нужно задавать их позицию на странице
                     Text = "C",
                     Style = (Style)Resources["CameraButtonsStyle"]
                 };

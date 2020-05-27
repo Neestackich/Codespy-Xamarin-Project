@@ -14,15 +14,17 @@
             <Color x:Key="MasterDetailBackColor">#443d47</Color>
             <Color x:Key="BarBackGroundColor">#272329</Color>
             <Color x:Key="RedactorButtonBGColor">#272329</Color>
+            <Color x:Key="RedactorButtonTxtColor">#6507a3</Color>
             <Color x:Key="RedactorFontColor">#6507a3</Color>
             <Color x:Key="CodeEditorBackground">#18151a</Color>
             <Color x:Key="CodeEditorBorderColor">#6507a3</Color>
 
             <Style x:Key="RedactorButtonsStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" 
-                        Value="{DynamicResource Key=ButtonBackGroundColor}"/>
-                <Setter Property="TextColor" Value="#272329"/>
-                <Setter Property="FontSize" Value="15"/>
+                        Value="{DynamicResource Key=RedactorButtonBGColor}"/>
+                <Setter Property="TextColor" 
+                        Value="{DynamicResource Key=RedactorButtonTxtColor}"/>
+                <Setter Property="FontSize" Value="Large"/>
                 <Setter Property="BorderColor"
                         Value="{DynamicResource Key=CodeEditorBorderColor}"/>
                 <Setter Property="BorderWidth" Value ="1"/>
