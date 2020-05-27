@@ -38,6 +38,8 @@ namespace CodeSpy
 
         StackLayout stackView;
 
+        int stringCounter;
+
         public Redactor()
         {
             InitializeComponent();
@@ -81,13 +83,14 @@ namespace CodeSpy
                 stringNumberBar = new Label
                 {
                     TextColor = (Color)Resources["CodeEditorTextColor"],
-                    FontSize = codeEditor.FontSize
+                    FontSize = codeEditor.FontSize,
+                    HorizontalOptions = LayoutOptions.Center
                 };
 
                 roundedStringNumberBar = new Frame
                 {
-                    Margin = new Thickness(3, 3, -1, 80),
-                    Padding = 3,
+                    Margin = new Thickness(3, 3, -1, 64),
+                    Padding = new Thickness(6, 6, 1, 10),
                     CornerRadius = 20,
                     IsClippedToBounds = true,
                     HasShadow = false,
@@ -95,6 +98,7 @@ namespace CodeSpy
                        (Color)Resources["CodeEditorBorderColor"],
                     BackgroundColor =
                        (Color)Resources["CodeEditorBackground"],
+                    HeightRequest = codeEditor.HeightRequest,
                     Content = stringNumberBar
                 };
 
@@ -102,7 +106,7 @@ namespace CodeSpy
 
                 roundedEditor = new Frame
                 {
-                    Margin = new Thickness(0, 3, 3, 80),
+                    Margin = new Thickness(0, 3, 3, 64),
                     Padding = 10,
                     CornerRadius = 20,
                     BackgroundColor =
@@ -110,6 +114,7 @@ namespace CodeSpy
                     IsClippedToBounds = true,
                     HasShadow = false,
                     Content = codeEditor,
+                    HorizontalOptions = LayoutOptions.FillAndExpand,
                     BorderColor =
                        (Color)Resources["CodeEditorBorderColor"]
                 };
@@ -171,20 +176,19 @@ namespace CodeSpy
 
         private void NumberBarFilling()
         {
-            int enterCounter;
-            enterCounter = 2;
+            stringCounter = 2;
 
             for (int i = 0; i < codeEditor.Text.Length; i++)
             {
                 if (codeEditor.Text[i] == '\n')
                 {
-                    enterCounter++;
+                    stringCounter++;
                 }
             }
 
             stringNumberBar.Text = null;
 
-            for (int i = 1; i <= enterCounter; i++)
+            for (int i = 1; i <= stringCounter; i++)
             {
                 stringNumberBar.Text += $"{i}\n";
             }
@@ -192,7 +196,17 @@ namespace CodeSpy
 
         private void StringNumberBar_Change(object sender, TextChangedEventArgs e)
         {
-            NumberBarFilling();
+            if (codeEditor.Text[codeEditor.Text.Length - 1] == '\n')
+            {
+                stringCounter++;
+            }
+
+            stringNumberBar.Text = null;
+
+            for (int i = 1; i <= stringCounter; i++)
+            {
+                stringNumberBar.Text += $"{i}\n";
+            }
         }
 
         private async void SendContent_ButtonClick(object sender, EventArgs e)
