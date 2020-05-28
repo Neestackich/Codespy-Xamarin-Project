@@ -167,8 +167,10 @@ namespace CodeSpy
                 sendToUrl.HorizontalOptions = LayoutOptions.End;
                 sendToUrl.VerticalOptions = LayoutOptions.CenterAndExpand;
 
-                AbsoluteLayout.SetLayoutBounds(sendToUrl, new Rectangle(0.97, 0.98, 50, 50));
-                AbsoluteLayout.SetLayoutFlags(sendToUrl, AbsoluteLayoutFlags.PositionProportional);
+                AbsoluteLayout.SetLayoutBounds(sendToUrl, 
+                    new Rectangle(0.97, 0.98, 50, 50));
+                AbsoluteLayout.SetLayoutFlags(sendToUrl, 
+                    AbsoluteLayoutFlags.PositionProportional);
 
                 absoluteLayout.Children.Add(relativeLayout);
                 absoluteLayout.Children.Add(sendToUrl);
@@ -228,7 +230,8 @@ namespace CodeSpy
         {
             jdoodle.SendMessage(codeEditor.Text);
 
-            await DisplayAlert("Compiler message", $"Result: {jdoodle.compilerResult.output}\n" +
+            await DisplayAlert("Compiler message", 
+                $"Result: {jdoodle.compilerResult.output}\n" +
                 $"Status code: {jdoodle.compilerResult.statusCode}\n" +
                 $"Memory used: {jdoodle.compilerResult.memory}\n" +
                 $"Cpu time: {jdoodle.compilerResult.cpuTime}", "Ok");
