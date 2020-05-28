@@ -6,13 +6,29 @@
              mc:Ignorable="d"
              x:Class="CodeSpy.FileManaging"
              BackgroundColor="{DynamicResource Key=PageBackGroundColor}">
-    
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="File!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <StackLayout Orientation="Horizontal">
+            <Entry x:Name="fileNameEntry" HorizontalOptions="FillAndExpand" />
+            <Button Text="Сохранить" Clicked="SaveButton_Clicked" />
         </StackLayout>
-    </ContentPage.Content>
-    
+        <Editor Grid.Row="1" x:Name="textEditor" />
+        <ListView x:Name="filesList" Grid.Row="2" ItemSelected="FileSelect">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding}">
+                        <TextCell.ContextActions>
+                            <MenuItem Text="Удалить" IsDestructive="True" Clicked="Delete" />
+                        </TextCell.ContextActions>
+                    </TextCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+
 </ContentPage>

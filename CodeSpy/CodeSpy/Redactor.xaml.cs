@@ -12,6 +12,7 @@ using Plugin.Connectivity.Abstractions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Runtime.InteropServices;
+using System.Net.Http.Headers;
 
 namespace CodeSpy
 {
@@ -21,11 +22,13 @@ namespace CodeSpy
         JDoodle jdoodle;
 
         Button sendToUrl;
+        Button saveFile;
+        Button deleteFile;
 
         Label connectionMessage;
         Label stringNumberBar;
 
-        Editor codeEditor;
+        internal Editor codeEditor;
 
         Frame roundedEditor;
         Frame roundedStringNumberBar;
@@ -38,11 +41,15 @@ namespace CodeSpy
 
         StackLayout stackView;
 
+        FileManaging fileManagingPage;
+
         int stringCounter;
         int textSize;
 
-        public Redactor()
+        public Redactor(FileManaging _fileManagingPage)
         {
+            fileManagingPage = _fileManagingPage;
+
             InitializeComponent();
 
             ConnectivityCheck();
@@ -69,6 +76,13 @@ namespace CodeSpy
                     Style = (Style)Resources["RedactorButtonsStyle"]
                 };
                 sendToUrl.Clicked += SendContent_ButtonClick;
+
+                saveFile = new Button
+                {
+                    Text = "S",
+                    Style = (Style)Resources["RedactorButtonsStyle"]
+                };
+                saveFile.Clicked += SaveFile_Clicked;
 
                 codeEditor = new Editor
                 {
@@ -176,6 +190,12 @@ namespace CodeSpy
                     Children = { connectionMessage }
                 };
             };
+        }
+
+        private void SaveFile_Clicked(object sender, EventArgs e)
+        {
+            //передать имя и текст файла в редакторе
+            //fileManagingPage.Save();
         }
 
         private void NumberBarFilling()

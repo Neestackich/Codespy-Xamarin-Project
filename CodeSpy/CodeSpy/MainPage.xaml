@@ -8,7 +8,7 @@
 
     <MasterDetailPage.Resources>
         <ResourceDictionary>
-            
+
             <Color x:Key="PageBackGroundColor">#38323b</Color>
             <Color x:Key="MasterDetailBackColor">#443d47</Color>
             <Color x:Key="BarBackGroundColor">#272329</Color>
@@ -30,7 +30,7 @@
                         Value="{DynamicResource Key=MainButtonBorderColor}"/>
                 <Setter Property="CornerRadius" Value="20"/>
             </Style>
-            
+
         </ResourceDictionary>
     </MasterDetailPage.Resources>
 

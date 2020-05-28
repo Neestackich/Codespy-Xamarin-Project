@@ -16,6 +16,10 @@ namespace CodeSpy
         NavigationPage browser;
         NavigationPage settings;
 
+        Redactor redactorPage;
+        Camera cameraPage;
+        FileManaging fileManagingPage;
+
         public MainPage()
         {
             InitializeComponent();
@@ -33,19 +37,25 @@ namespace CodeSpy
 
         private void Linking()
         {
-            redactor = new NavigationPage(new Redactor())
+            redactorPage = new Redactor(fileManagingPage);
+
+            redactor = new NavigationPage(redactorPage)
             {
                 BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
                 BarTextColor = (Color)Resources["BarTextColor"]
             };
 
-            camera = new NavigationPage(new Camera())
+            cameraPage = new Camera(redactorPage);
+
+            camera = new NavigationPage(cameraPage)
             {
                 BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
                 BarTextColor = (Color)Resources["BarTextColor"]
             };
 
-            fileManager = new NavigationPage(new FileManaging())
+            fileManagingPage = new FileManaging(redactorPage);
+
+            fileManager = new NavigationPage(fileManagingPage)
             {
                 BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
                 BarTextColor = (Color)Resources["BarTextColor"]

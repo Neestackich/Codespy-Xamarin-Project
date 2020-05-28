@@ -23,6 +23,7 @@ namespace CodeSpy
 
         Button capture;
         Button select;
+        Button sendToRedact;
 
         Label connectionMessage;
         Label capturedText;
@@ -35,8 +36,12 @@ namespace CodeSpy
 
         StackLayout stackView;
 
-        public Camera()
+        Redactor redactorPage;
+
+        public Camera(Redactor _redactorPage)
         {
+            redactorPage = _redactorPage;
+
             InitializeComponent();
 
             ConnectivityCheck();
@@ -59,6 +64,7 @@ namespace CodeSpy
         {
             if (CrossConnectivity.Current.IsConnected)
             {
+                //камера 
                 capture = new Button
                 {
                     Text = "C",
@@ -66,12 +72,21 @@ namespace CodeSpy
                 };
                 capture.Clicked += Capture_OnClicked;
 
+                //выбор из галереи
                 select = new Button
                 {
                     Text = "+",
                     Style = (Style)Resources["CameraButtonsStyle"]
                 };
                 select.Clicked += Select_OnClicked;
+
+                //пересылка полученного текста в редактор
+                sendToRedact = new Button
+                {
+                    Text = "S",
+                    Style = (Style)Resources["CameraButtonsStyle"]
+                };
+                sendToRedact.Clicked += SendToRedact_Clicked;
 
                 capturedText = new Label
                 {
@@ -143,9 +158,15 @@ namespace CodeSpy
                 AbsoluteLayout.SetLayoutFlags(select,
                     AbsoluteLayoutFlags.PositionProportional);
 
+                AbsoluteLayout.SetLayoutBounds(sendToRedact,
+                   new Rectangle(0.57, 0.98, 50, 50));
+                AbsoluteLayout.SetLayoutFlags(sendToRedact,
+                    AbsoluteLayoutFlags.PositionProportional);
+
                 absoluteLayout.Children.Add(relativeLayout);
                 absoluteLayout.Children.Add(capture);
                 absoluteLayout.Children.Add(select);
+                absoluteLayout.Children.Add(sendToRedact);
 
                 Content = absoluteLayout;
             }
@@ -164,6 +185,11 @@ namespace CodeSpy
                     Children = { connectionMessage }
                 };
             }
+        }
+
+        private void SendToRedact_Clicked(object sender, EventArgs e)
+        {
+            redactorPage.codeEditor.Text = capturedText.Text;
         }
 
         public void Clear()
