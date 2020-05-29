@@ -189,7 +189,14 @@ namespace CodeSpy
 
         private void SendToRedact_Clicked(object sender, EventArgs e)
         {
-            redactorPage.codeEditor.Text = capturedText.Text;
+            if (redactorPage.codeEditor.Text == new string('\n', 21))
+            {
+                redactorPage.codeEditor.Text = capturedText.Text;
+            }
+            else
+            {
+                redactorPage.codeEditor.Text += capturedText.Text;
+            }
         }
 
         public void Clear()
@@ -253,7 +260,7 @@ namespace CodeSpy
             photoToShow.Source = ImageSource.FromStream(photo.GetStream);
 
             roundedFramePhoto.BackgroundColor =
-                    (Color)Resources["CodeEditorBackground"];
+                (Color)Resources["CodeEditorBackground"];
             roundedFramePhoto.BorderColor =
                 (Color)Resources["ExtractedTextBorderColor"];
         }

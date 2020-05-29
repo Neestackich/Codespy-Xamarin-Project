@@ -30,6 +30,8 @@ namespace CodeSpy
 
         internal Editor codeEditor;
 
+        bool isEmpty = true;
+
         Frame roundedEditor;
         Frame roundedStringNumberBar;
 
@@ -104,8 +106,8 @@ namespace CodeSpy
 
                 roundedStringNumberBar = new Frame
                 {
-                    Margin = new Thickness(3, 3, -1, 64),
-                    Padding = new Thickness(6, 17, 1, 10),
+                    Margin = new Thickness(3, 3, 0, 64),
+                    Padding = new Thickness(5, 17, 5, 10),
                     CornerRadius = 20,
                     IsClippedToBounds = true,
                     HasShadow = false,

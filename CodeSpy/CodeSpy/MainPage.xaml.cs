@@ -17,7 +17,9 @@ namespace CodeSpy
         NavigationPage settings;
 
         Redactor redactorPage;
+
         Camera cameraPage;
+
         FileManaging fileManagingPage;
 
         public MainPage()
@@ -53,7 +55,7 @@ namespace CodeSpy
                 BarTextColor = (Color)Resources["BarTextColor"]
             };
 
-            fileManagingPage = new FileManaging(redactorPage);
+            fileManagingPage = new FileManaging(redactorPage, this.Detail);
 
             fileManager = new NavigationPage(fileManagingPage)
             {

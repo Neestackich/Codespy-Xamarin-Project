@@ -14,9 +14,13 @@ namespace CodeSpy
     {
         Redactor redactorPage;
 
-        public FileManaging(Redactor _redactorPage)
+        Page detail;
+
+        public FileManaging(Redactor _redactorPage, Page _detail)
         {
             redactorPage = _redactorPage;
+
+            detail = _detail;
 
             InitializeComponent();
         }
@@ -69,7 +73,6 @@ namespace CodeSpy
 
             // снимаем выделение
             filesList.SelectedItem = null;
-
         }
 
         async void Delete(object sender, EventArgs args)
@@ -94,6 +97,17 @@ namespace CodeSpy
             filesList.SelectedItem = null;
         }
 
-        
+        private void RedactButton_Clicked(object sender, EventArgs e)
+        {
+            if(redactorPage.codeEditor.Text == new string('\n', 21))
+            {
+                redactorPage.codeEditor.Text = null;
+                //redactorPage.codeEditor.Text = 
+            }
+            else
+            {
+                //redactorPage.codeEditor.Text += 
+            }
+        }
     }
 }
