@@ -45,7 +45,9 @@
                                WidthRequest="125" 
                                CornerRadius="100" 
                                BorderColor="{DynamicResource Key=BarBackGroundColor}"
-                               Margin="20"/>
+                               Margin="20">
+                            <Image x:Name="PageIcon" Source="compiler.png" Aspect="AspectFill"/>
+                        </Frame>
                     </StackLayout>
 
                     <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">

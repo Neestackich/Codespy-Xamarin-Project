@@ -81,6 +81,8 @@ namespace CodeSpy
         {
             Detail = camera;
 
+            PageIcon.Source = "spy.png";
+
             //чтоб меню пропадало
             IsPresented = false;
         }
@@ -89,6 +91,8 @@ namespace CodeSpy
         private void RedactorButton_Clicked(object sender, EventArgs e)
         {
             Detail = redactor;
+
+            PageIcon.Source = "compiler.png";
 
             IsPresented = false;
         }
