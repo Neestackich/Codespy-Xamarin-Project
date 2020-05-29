@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -59,13 +60,12 @@ namespace CodeSpy
             if (args.SelectedItem == null) return;
 
             // получаем выделенный элемент
-            string filename = (string)args.SelectedItem;
+            string fileName = (string)args.SelectedItem;
+            string fileText = await DependencyService.Get<IFileManaging>().LoadTextAsync((string)args.SelectedItem);
 
-            // загружем текст в текстовое поле
-            //textEditor.Text = await DependencyService.Get<IFileManaging>().LoadTextAsync((string)args.SelectedItem);
+            await Navigation.PushAsync(new FilePreview(fileName, fileText, redactorPage));
 
-            //// устанавливаем название файла
-            //fileNameEntry.Text = filename;
+            await UpdateFileList();
 
             // снимаем выделение
             filesList.SelectedItem = null;

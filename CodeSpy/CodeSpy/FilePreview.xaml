@@ -4,12 +4,37 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="CodeSpy.FilePreview">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="CodeSpy.FilePreview"
+             BackgroundColor="{DynamicResource Key=PageBackGroundColor}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="PageBackGroundColor">#4d4552</Color>
+            <Color x:Key="MasterDetailBackColor">#443d47</Color>
+            <Color x:Key="BarBackGroundColor">#272329</Color>
+            <Color x:Key="FilePrevButtonBGColor">#272329</Color>
+            <Color x:Key="FilePrevButtonTxtColor">#6507a3</Color>
+            <Color x:Key="FilePrevFontColor">#6507a3</Color>
+            <Color x:Key="TextEditorBackground">#18151a</Color>
+            <Color x:Key="TextEditorBorderColor">#6507a3</Color>
+            <Color x:Key="TextEditorTextColor">#8f8199</Color>
+
+            <Style x:Key="FilePrevButtonsStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" 
+                        Value="{DynamicResource Key=FilePrevButtonBGColor}"/>
+                <Setter Property="TextColor" 
+                        Value="{DynamicResource Key=FilePrevButtonTxtColor}"/>
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="BorderColor"
+                        Value="{DynamicResource Key=TextEditorBorderColor}"/>
+                <Setter Property="BorderWidth" Value ="1"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="WidthRequest" Value="50"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
 </ContentPage>
