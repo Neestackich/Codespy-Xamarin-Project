@@ -46,7 +46,6 @@ namespace CodeSpy
         FileManaging fileManagingPage;
 
         int stringCounter;
-        int textSize;
 
         public Redactor(FileManaging _fileManagingPage)
         {
@@ -205,7 +204,6 @@ namespace CodeSpy
         private void NumberBarFilling()
         {
             stringCounter = 1;
-            textSize = codeEditor.Text.Length;
 
             for (int i = 0; i < codeEditor.Text.Length; i++)
             {

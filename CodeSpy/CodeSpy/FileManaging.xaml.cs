@@ -14,20 +14,16 @@ namespace CodeSpy
     {
         Redactor redactorPage;
 
-        Page detail;
-
-        public FileManaging(Redactor _redactorPage, Page _detail)
+        public FileManaging(Redactor _redactorPage)
         {
             redactorPage = _redactorPage;
-
-            detail = _detail;
 
             InitializeComponent();
         }
 
         private void SaveButton_Clicked(object sender, EventArgs e)
         {
-            Save(fileNameEntry.Text, textEditor.Text);
+            //Save(fileNameEntry.Text, textEditor.Text);
         }
 
         protected override async void OnAppearing()
@@ -61,15 +57,15 @@ namespace CodeSpy
         async void FileSelect(object sender, SelectedItemChangedEventArgs args)
         {
             if (args.SelectedItem == null) return;
-            
+
             // получаем выделенный элемент
             string filename = (string)args.SelectedItem;
 
             // загружем текст в текстовое поле
-            textEditor.Text = await DependencyService.Get<IFileManaging>().LoadTextAsync((string)args.SelectedItem);
+            //textEditor.Text = await DependencyService.Get<IFileManaging>().LoadTextAsync((string)args.SelectedItem);
 
-            // устанавливаем название файла
-            fileNameEntry.Text = filename;
+            //// устанавливаем название файла
+            //fileNameEntry.Text = filename;
 
             // снимаем выделение
             filesList.SelectedItem = null;
@@ -99,7 +95,7 @@ namespace CodeSpy
 
         private void RedactButton_Clicked(object sender, EventArgs e)
         {
-            if(redactorPage.codeEditor.Text == new string('\n', 21))
+            if (redactorPage.codeEditor.Text == new string('\n', 21))
             {
                 redactorPage.codeEditor.Text = null;
                 //redactorPage.codeEditor.Text = 

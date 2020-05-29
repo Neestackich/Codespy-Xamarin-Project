@@ -119,5 +119,8 @@
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\SplashPageScreen.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <AndroidResource Include="Resources\drawable\compiler.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>

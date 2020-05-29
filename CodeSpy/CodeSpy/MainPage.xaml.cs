@@ -55,7 +55,7 @@ namespace CodeSpy
                 BarTextColor = (Color)Resources["BarTextColor"]
             };
 
-            fileManagingPage = new FileManaging(redactorPage, this.Detail);
+            fileManagingPage = new FileManaging(redactorPage);
 
             fileManager = new NavigationPage(fileManagingPage)
             {

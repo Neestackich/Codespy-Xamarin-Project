@@ -519,3 +519,4 @@ D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\C
 D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy.Android\obj\Debug\90\android\assets\Plugin.Connectivity.dll
 D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy.Android\obj\Debug\90\android\assets\Plugin.Connectivity.dll.mdb
 D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy.Android\obj\Debug\90\android\src\crc64cea48322b3427ae9\ConnectivityChangeBroadcastReceiver.java
+D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy.Android\obj\Debug\90\res\drawable\compiler.png

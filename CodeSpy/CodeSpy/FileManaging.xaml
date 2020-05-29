@@ -7,34 +7,48 @@
              x:Class="CodeSpy.FileManaging"
              BackgroundColor="{DynamicResource Key=PageBackGroundColor}">
 
-    <Grid>
-        
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        
-        <StackLayout Orientation="Horizontal">
-            <Entry x:Name="fileNameEntry" HorizontalOptions="FillAndExpand" />
-            <Button Text="Сохранить" Clicked="SaveButton_Clicked" />
-            <Button Text="Redact" Clicked="RedactButton_Clicked"/>
-        </StackLayout>
-        
-        <Editor Grid.Row="1" x:Name="textEditor" />
-        
-        <ListView x:Name="filesList" Grid.Row="2" ItemSelected="FileSelect">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <TextCell Text="{Binding}">
-                        <TextCell.ContextActions>
-                            <MenuItem Text="Удалить" IsDestructive="True" Clicked="Delete" />
-                        </TextCell.ContextActions>
-                    </TextCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        
-    </Grid>
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="PageBackGroundColor">#4d4552</Color>
+            <Color x:Key="MasterDetailBackColor">#443d47</Color>
+            <Color x:Key="BarBackGroundColor">#272329</Color>
+            <Color x:Key="FileBackground">#18151a</Color>
+            <Color x:Key="CodeEditorBorderColor">#6507a3</Color>
+            <Color x:Key="UnderLineColor">#6507a3</Color>
+            <Color x:Key="FileNameTextColor">#6507a3</Color>
+            <Color x:Key="FileBorderColor">#6507a3</Color>
+
+            <Style x:Key="FileManagerStyle" TargetType="Frame">
+                <Setter Property="BackgroundColor" 
+                        Value="{DynamicResource Key=FileBackground}"/>
+                <Setter Property="BorderColor"
+                        Value="{DynamicResource Key=FileBorderColor}"/>
+                <Setter Property="CornerRadius" Value="20"/>
+                <Setter Property="Margin" Value="3"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Frame Style="{DynamicResource Key=FileManagerStyle}">
+                <ListView x:Name="filesList" Grid.Row="2" 
+                          ItemSelected="FileSelect" 
+                          SeparatorColor="{DynamicResource Key=UnderLineColor}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <TextCell Text="{Binding}" TextColor="{DynamicResource Key=FileNameTextColor}">
+                                <TextCell.ContextActions>
+                                    <MenuItem Text="Удалить" IsDestructive="True" Clicked="Delete" />
+                                </TextCell.ContextActions>
+                            </TextCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Frame>
+        </ScrollView>
+    </ContentPage.Content>
 
 </ContentPage>
