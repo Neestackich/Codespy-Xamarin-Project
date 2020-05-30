@@ -6,13 +6,31 @@
              mc:Ignorable="d"
              x:Class="CodeSpy.Settings"
              BackgroundColor="{DynamicResource Key=PageBackGroundColor}">
-    
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Settings"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand"/>
-        </StackLayout>
-    </ContentPage.Content>
-    
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+
+            <Color x:Key="PageBackGroundColor">#4d4552</Color>
+            <Color x:Key="MasterDetailBackColor">#443d47</Color>
+            <Color x:Key="BarBackGroundColor">#272329</Color>
+            <Color x:Key="SettButtonBackGroundColor">#272329</Color>
+            <Color x:Key="SettButtonTxtGroundColor">#6507a3</Color>
+            <Color x:Key="FontColor">#6507a3</Color>
+            <Color x:Key="SettEditorBackground">#18151a</Color>
+            <Color x:Key="ExtractedTextBorderColor">#6507a3</Color>
+
+            <Style x:Key="CameraButtonsStyle" TargetType="ImageButton">
+                <Setter Property="BackgroundColor" 
+                        Value="{DynamicResource Key=SettButtonBackGroundColor}"/>
+                <Setter Property="BorderColor"
+                        Value="{DynamicResource Key=ExtractedTextBorderColor}"/>
+                <Setter Property="BorderWidth" Value ="1"/>
+                <Setter Property="CornerRadius" Value="25"/>
+                <Setter Property="HeightRequest" Value="50"/>
+                <Setter Property="WidthRequest" Value="50"/>
+            </Style>
+
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
 </ContentPage>

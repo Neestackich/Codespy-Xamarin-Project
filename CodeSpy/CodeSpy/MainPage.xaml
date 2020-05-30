@@ -37,95 +37,97 @@
     <MasterDetailPage.Master>
         <ContentPage Title="Master" BackgroundColor="{DynamicResource Key=MasterDetailBackColor}">
             <ContentPage.Content>
-                <StackLayout>
+                <ScrollView>
+                    <StackLayout>
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
-                        <Frame BackgroundColor="{DynamicResource Key=FontColor}"
-                               HeightRequest="125" 
-                               WidthRequest="125" 
-                               CornerRadius="100" 
-                               BorderColor="{DynamicResource Key=BarBackGroundColor}"
-                               Margin="20">
-                            <Image x:Name="PageIcon" Source="processor.png" Aspect="AspectFill"/>
-                        </Frame>
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                            <Frame BackgroundColor="{DynamicResource Key=FontColor}"
+                                   HeightRequest="125" 
+                                   WidthRequest="125" 
+                                   CornerRadius="100" 
+                                   BorderColor="{DynamicResource Key=BarBackGroundColor}"
+                                   Margin="20">
+                                <Image x:Name="PageIcon" Source="processor.png" Aspect="AspectFill"/>
+                            </Frame>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Frame BackgroundColor="{DynamicResource Key=FontColor}"
+                                   HeightRequest="25" 
+                                   WidthRequest="25" 
+                                   CornerRadius="100" 
+                                   BorderColor="{DynamicResource Key=BarBackGroundColor}"
+                                   Margin="2"
+                                   Padding="15">
+                                <Image x:Name="camButtonIcon" Source="photoCamera.png" Aspect="AspectFit"/>
+                            </Frame>
+                            <Button Text="Камера" Clicked="CameraButton_Clicked" 
+                                    HorizontalOptions="FillAndExpand"
+                                    Style="{DynamicResource Key=MenuButtonStyle}"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Frame BackgroundColor="{DynamicResource Key=FontColor}"
+                                   HeightRequest="25" 
+                                   WidthRequest="25" 
+                                   CornerRadius="100" 
+                                   BorderColor="{DynamicResource Key=BarBackGroundColor}"
+                                   Margin="2"
+                                   Padding="15">
+                                <Image x:Name="compButtonIcon" Source="processor.png" Aspect="AspectFill"/>
+                            </Frame>
+                            <Button Text="Редактор" Clicked="RedactorButton_Clicked" 
+                                    HorizontalOptions="FillAndExpand"
+                                    Style="{DynamicResource Key=MenuButtonStyle}"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Frame BackgroundColor="{DynamicResource Key=FontColor}"
+                                   HeightRequest="25" 
+                                   WidthRequest="25" 
+                                   CornerRadius="100" 
+                                   BorderColor="{DynamicResource Key=BarBackGroundColor}"
+                                   Margin="2"
+                                   Padding="15">
+                                <Image x:Name="fileButtonIcon" Source="portableDocument.png" Aspect="AspectFill"/>
+                            </Frame>
+                            <Button Text="Файл" Clicked="FileManagingButton_Clicked" 
+                                    HorizontalOptions="FillAndExpand"
+                                    Style="{DynamicResource Key=MenuButtonStyle}"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Frame BackgroundColor="{DynamicResource Key=FontColor}"
+                                   HeightRequest="25" 
+                                   WidthRequest="25" 
+                                   CornerRadius="100" 
+                                   BorderColor="{DynamicResource Key=BarBackGroundColor}"
+                                   Margin="2"
+                                   Padding="15">
+                                <Image x:Name="browseButtonIcon" Source="navigation.png" Aspect="AspectFill"/>
+                            </Frame>
+                            <Button Text="Браузер" Clicked="BrowserButton_Clicked" 
+                                    HorizontalOptions="FillAndExpand"
+                                    Style="{DynamicResource Key=MenuButtonStyle}"/>
+                        </StackLayout>
+
+                        <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                            <Frame BackgroundColor="{DynamicResource Key=FontColor}"
+                                   HeightRequest="25" 
+                                   WidthRequest="25" 
+                                   CornerRadius="100" 
+                                   BorderColor="{DynamicResource Key=BarBackGroundColor}"
+                                   Margin="2"
+                                   Padding="15">
+                                <Image x:Name="settingsButtonIcon" Source="settings.png" Aspect="AspectFill"/>
+                            </Frame>
+                            <Button Text="Настройки" Clicked="SettingsButton_Clicked" 
+                                    HorizontalOptions="FillAndExpand"
+                                    Style="{DynamicResource Key=MenuButtonStyle}"/>
+                        </StackLayout>
+
                     </StackLayout>
-
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <Frame BackgroundColor="{DynamicResource Key=FontColor}"
-                               HeightRequest="25" 
-                               WidthRequest="25" 
-                               CornerRadius="100" 
-                               BorderColor="{DynamicResource Key=BarBackGroundColor}"
-                               Margin="2"
-                               Padding="15">
-                            <Image x:Name="camButtonIcon" Source="photoCamera.png" Aspect="AspectFit"/>
-                        </Frame>
-                        <Button Text="Камера" Clicked="CameraButton_Clicked" 
-                                HorizontalOptions="FillAndExpand"
-                                Style="{DynamicResource Key=MenuButtonStyle}"/>
-                    </StackLayout>
-
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <Frame BackgroundColor="{DynamicResource Key=FontColor}"
-                               HeightRequest="25" 
-                               WidthRequest="25" 
-                               CornerRadius="100" 
-                               BorderColor="{DynamicResource Key=BarBackGroundColor}"
-                               Margin="2"
-                               Padding="15">
-                            <Image x:Name="compButtonIcon" Source="processor.png" Aspect="AspectFill"/>
-                        </Frame>
-                        <Button Text="Редактор" Clicked="RedactorButton_Clicked" 
-                                HorizontalOptions="FillAndExpand"
-                                Style="{DynamicResource Key=MenuButtonStyle}"/>
-                    </StackLayout>
-
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <Frame BackgroundColor="{DynamicResource Key=FontColor}"
-                               HeightRequest="25" 
-                               WidthRequest="25" 
-                               CornerRadius="100" 
-                               BorderColor="{DynamicResource Key=BarBackGroundColor}"
-                               Margin="2"
-                               Padding="15">
-                            <Image x:Name="fileButtonIcon" Source="portableDocument.png" Aspect="AspectFill"/>
-                        </Frame>
-                        <Button Text="Файл" Clicked="FileManagingButton_Clicked" 
-                                HorizontalOptions="FillAndExpand"
-                                Style="{DynamicResource Key=MenuButtonStyle}"/>
-                    </StackLayout>
-
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <Frame BackgroundColor="{DynamicResource Key=FontColor}"
-                               HeightRequest="25" 
-                               WidthRequest="25" 
-                               CornerRadius="100" 
-                               BorderColor="{DynamicResource Key=BarBackGroundColor}"
-                               Margin="2"
-                               Padding="15">
-                            <Image x:Name="browseButtonIcon" Source="navigation.png" Aspect="AspectFill"/>
-                        </Frame>
-                        <Button Text="Браузер" Clicked="BrowserButton_Clicked" 
-                                HorizontalOptions="FillAndExpand"
-                                Style="{DynamicResource Key=MenuButtonStyle}"/>
-                    </StackLayout>
-
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
-                        <Frame BackgroundColor="{DynamicResource Key=FontColor}"
-                               HeightRequest="25" 
-                               WidthRequest="25" 
-                               CornerRadius="100" 
-                               BorderColor="{DynamicResource Key=BarBackGroundColor}"
-                               Margin="2"
-                               Padding="15">
-                            <Image x:Name="settingsButtonIcon" Source="settings.png" Aspect="AspectFill"/>
-                        </Frame>
-                        <Button Text="Настройки" Clicked="SettingsButton_Clicked" 
-                                HorizontalOptions="FillAndExpand"
-                                Style="{DynamicResource Key=MenuButtonStyle}"/>
-                    </StackLayout>
-
-                </StackLayout>
+                </ScrollView>
             </ContentPage.Content>
         </ContentPage>
     </MasterDetailPage.Master>

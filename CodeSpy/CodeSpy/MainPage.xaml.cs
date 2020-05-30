@@ -69,7 +69,7 @@ namespace CodeSpy
                 BarTextColor = (Color)Resources["BarTextColor"]
             };
 
-            settings = new NavigationPage(new Settings())
+            settings = new NavigationPage(new Settings(redactorPage))
             {
                 BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
                 BarTextColor = (Color)Resources["BarTextColor"]

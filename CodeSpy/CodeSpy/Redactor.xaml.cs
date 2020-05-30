@@ -21,7 +21,7 @@ namespace CodeSpy
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Redactor : ContentPage
     {
-        JDoodle jdoodle;
+        internal JDoodle jdoodle;
 
         Image noConnection;
 

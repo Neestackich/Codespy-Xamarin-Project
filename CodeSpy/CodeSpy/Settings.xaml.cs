@@ -12,9 +12,147 @@ namespace CodeSpy
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Settings : ContentPage
     {
-        public Settings()
+        Dictionary<string, string> languages;
+
+        Redactor redactorPage;
+
+        Picker language;
+        Picker version;
+
+        public Settings(Redactor _redactorPage)
         {
             InitializeComponent();
+
+            languages = new Dictionary<string, string>();
+
+            redactorPage = _redactorPage;
+
+            Linking();
+        }
+
+        private void Linking()
+        {
+            languages = new Dictionary<string, string>();
+
+            languages.Add("csharp", "using System; \nclass Program " +
+            "\n{ \nstatic void Main() \n{ " +
+            "\nint x = 10; \nint y = 25; \nint z = x + y; " +
+            "\nConsole.Write(\"Sum of x + y = \" + z); \n} \n}");
+
+            languages.Add("c", "#include<stdio.h> \nint main() \n{ " +
+            "\nint x = 10; \nint y = 25; \nint z = x + y; " +
+            "\nprintf(\"Sum of x+y = %i\", z); \n}");
+
+            languages.Add("java", "public class MyClass \n{ " +
+            "\npublic static void main(String args[]) \n{ " +
+            "\nint x = 10; \nint y = 25; \nint z = x + y;" +
+            "\nSystem.out.println(\"Sum of x+y = \" + z); \n} \n}");
+
+            languages.Add("cpp", "#include <iostream> \nusing namespace std; " +
+                "\nint main() \n{ \nint x = 10; \nint y = 25; \nint z = x + y; " +
+                "\ncout << \"Sum of x+y = \" << z; \n} \n}");
+
+            languages.Add("ruby", "x = 10; \ny = 25; \nz = x + y; " +
+                "\nprint \"Sum of x + y = \", z;");
+
+            languages.Add("go", "package main \nimport \"fmt\" " +
+                "\nfunc main() {\nx:= 25\ny:= 10\nz:= x + y" +
+                "\nfmt.Printf(\"Sum of x + y = %d\", z)\n");
+
+            language = new Picker
+            {
+                Title = "Язык",
+                TextColor = (Color)Resources["FontColor"]
+            };
+            language.Items.Add("C#");
+            language.Items.Add("Java");
+            language.Items.Add("C");
+            language.Items.Add("C++");
+            language.Items.Add("Ruby");
+            language.Items.Add("GO");
+            language.SelectedIndexChanged += Language_SelectedIndexChanged;
+
+            version = new Picker
+            {
+                Title = "Версия"
+            };
+            version.SelectedIndexChanged += Version_SelectedIndexChanged;
+
+            Content = new StackLayout
+            {
+                Children = { language, version }
+            };
+        }
+
+        private void Version_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void Language_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (language.Items[language.SelectedIndex] == "C#")
+            {
+                redactorPage.codeEditor.Text = languages["csharp"];
+                redactorPage.jdoodle.infoToCompileMessage.language = "csharp";
+
+                version.Items.Add("mono 4.2.2");
+                version.Items.Add("mono 5.0.0");
+                version.Items.Add("mono 5.10.1");
+                version.Items.Add("mono 6.0.0");
+            }
+            else if(language.Items[language.SelectedIndex] == "Java")
+            {
+                redactorPage.codeEditor.Text = languages["java"];
+                redactorPage.jdoodle.infoToCompileMessage.language = "java";
+
+                version.Items.Add("JDK 1.8.0_66");
+                version.Items.Add("JDK 9.0.1");
+                version.Items.Add("JDK 10.0.1");
+                version.Items.Add("JDK 11.0.4");
+            }
+            else if (language.Items[language.SelectedIndex] == "C")
+            {
+                redactorPage.codeEditor.Text = languages["c"];
+                redactorPage.jdoodle.infoToCompileMessage.language = "c";
+
+                version.Items.Add("GCC 5.3.0");
+                version.Items.Add("Zapcc 5.0.0");
+                version.Items.Add("GCC 7.2.0");
+                version.Items.Add("GCC 8.1.0");
+                version.Items.Add("GCC 9.1.0");
+            }
+            else if (language.Items[language.SelectedIndex] == "C++")
+            {
+                redactorPage.codeEditor.Text = languages["cpp"];
+                redactorPage.jdoodle.infoToCompileMessage.language = "cpp";
+
+                version.Items.Add("GCC 5.3.0");
+                version.Items.Add("Zapcc 5.0.0");
+                version.Items.Add("GCC 7.2.0");
+                version.Items.Add("GCC 8.1.0");
+                version.Items.Add("GCC 9.1.0");
+            }
+            else if (language.Items[language.SelectedIndex] == "Ruby")
+            {
+                redactorPage.codeEditor.Text = languages["ruby"];
+                redactorPage.jdoodle.infoToCompileMessage.language = "ruby";
+
+                version.Items.Add("2.2.4");
+                version.Items.Add("2.4.2p198");
+                version.Items.Add("2.5.1p57");
+                version.Items.Add("2.6.5");
+            }
+            else
+            {
+                redactorPage.codeEditor.Text = languages["go"];
+                redactorPage.jdoodle.infoToCompileMessage.language = "go";
+
+                version.Items.Add("1.5.2");
+                version.Items.Add("1.9.2");
+                version.Items.Add("1.10.2");
+                version.Items.Add("1.13.1");
+            }
         }
     }
 }

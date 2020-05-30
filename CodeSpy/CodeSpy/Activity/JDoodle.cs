@@ -20,7 +20,7 @@ namespace CodeSpy
         private const string endPointCreditsCheck =
             "https://api.jdoodle.com/v1/credit-spent";
 
-        private MessageToCompile infoToCompileMessage;
+        internal MessageToCompile infoToCompileMessage;
 
         private  MessageToCheck creditsInfoMessage;
 

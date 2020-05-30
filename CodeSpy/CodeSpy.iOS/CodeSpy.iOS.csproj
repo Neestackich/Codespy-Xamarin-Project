@@ -152,4 +152,58 @@
   <ItemGroup>
     <BundleResource Include="Resources\spy.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settingsPurple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\settings.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\minus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\navigation.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\no.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\photoCamera.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\photoCameraPurple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\photoPurple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\plus.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\portableDocument.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\portableDocumentPurple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\processor.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\processorPurple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\SplashPageScreen.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\closePurple.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\compiler.png" />
+  </ItemGroup>
 </Project>
