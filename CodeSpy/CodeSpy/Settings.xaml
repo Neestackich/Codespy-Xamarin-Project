@@ -16,8 +16,8 @@
             <Color x:Key="SettButtonBackGroundColor">#272329</Color>
             <Color x:Key="SettButtonTxtGroundColor">#6507a3</Color>
             <Color x:Key="FontColor">#6507a3</Color>
-            <Color x:Key="SettEditorBackground">#18151a</Color>
-            <Color x:Key="ExtractedTextBorderColor">#6507a3</Color>
+            <Color x:Key="SettPickerBackground">#18151a</Color>
+            <Color x:Key="PickerBorderColor">#6507a3</Color>
 
             <Style x:Key="CameraButtonsStyle" TargetType="ImageButton">
                 <Setter Property="BackgroundColor" 

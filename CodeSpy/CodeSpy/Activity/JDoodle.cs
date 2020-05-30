@@ -39,8 +39,8 @@ namespace CodeSpy
                 clientSecret =
                     "648bd55518cc25ec785b70ecf614298a1868679fe653517eace4567cb44bf86e",
                 stdin = "",
-                language = "c",
-                versionIndex = "0"
+                language = "",
+                versionIndex = ""
             };
 
             creditsInfoMessage = new MessageToCheck

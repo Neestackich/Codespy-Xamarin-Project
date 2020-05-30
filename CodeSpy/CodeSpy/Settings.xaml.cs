@@ -19,6 +19,9 @@ namespace CodeSpy
         Picker language;
         Picker version;
 
+        Frame roundedLanguage;
+        Frame roundedVersion;
+
         public Settings(Redactor _redactorPage)
         {
             InitializeComponent();
@@ -62,6 +65,7 @@ namespace CodeSpy
             language = new Picker
             {
                 Title = "Язык",
+                TitleColor = (Color)Resources["FontColor"],
                 TextColor = (Color)Resources["FontColor"]
             };
             language.Items.Add("C#");
@@ -74,13 +78,43 @@ namespace CodeSpy
 
             version = new Picker
             {
-                Title = "Версия транслятора"
+                Title = "Версия транслятора",
+                TitleColor = (Color)Resources["FontColor"],
+                TextColor = (Color)Resources["FontColor"]
             };
             version.SelectedIndexChanged += Version_SelectedIndexChanged;
 
+            roundedLanguage = new Frame
+            {
+                Margin = new Thickness(3, 6, 3, 3),
+                Padding = 3,
+                CornerRadius = 20,
+                BackgroundColor = 
+                    (Color)Resources["SettPickerBackground"],
+                IsClippedToBounds = true,
+                HasShadow = false,
+                BorderColor =
+                    (Color)Resources["PickerBorderColor"],
+                Content = language
+            };
+
+            roundedVersion = new Frame
+            {
+                Margin = new Thickness(3, 6, 3, 3),
+                Padding = 3,
+                CornerRadius = 20,
+                BackgroundColor =
+                    (Color)Resources["SettPickerBackground"],
+                IsClippedToBounds = true,
+                HasShadow = false,
+                BorderColor =
+                    (Color)Resources["PickerBorderColor"],
+                Content = version
+            };
+
             Content = new StackLayout
             {
-                Children = { language, version }
+                Children = { roundedLanguage, roundedVersion }
             };
         }
 
