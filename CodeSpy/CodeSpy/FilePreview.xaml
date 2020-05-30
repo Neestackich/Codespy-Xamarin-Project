@@ -20,12 +20,9 @@
             <Color x:Key="TextEditorBorderColor">#6507a3</Color>
             <Color x:Key="TextEditorTextColor">#8f8199</Color>
 
-            <Style x:Key="FilePrevButtonsStyle" TargetType="Button">
+            <Style x:Key="FilePrevButtonsStyle" TargetType="ImageButton">
                 <Setter Property="BackgroundColor" 
                         Value="{DynamicResource Key=FilePrevButtonBGColor}"/>
-                <Setter Property="TextColor" 
-                        Value="{DynamicResource Key=FilePrevButtonTxtColor}"/>
-                <Setter Property="FontSize" Value="Large"/>
                 <Setter Property="BorderColor"
                         Value="{DynamicResource Key=TextEditorBorderColor}"/>
                 <Setter Property="BorderWidth" Value ="1"/>

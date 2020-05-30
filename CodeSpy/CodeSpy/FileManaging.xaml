@@ -32,23 +32,25 @@
     </ContentPage.Resources>
 
     <ContentPage.Content>
-        <ScrollView>
-            <Frame Style="{DynamicResource Key=FileManagerStyle}">
-                <ListView x:Name="filesList" Grid.Row="2" 
-                          ItemSelected="FileSelect" 
-                          SeparatorColor="{DynamicResource Key=UnderLineColor}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextCell Text="{Binding}" TextColor="{DynamicResource Key=FileNameTextColor}">
-                                <TextCell.ContextActions>
-                                    <MenuItem Text="Удалить" IsDestructive="True" Clicked="Delete" />
-                                </TextCell.ContextActions>
-                            </TextCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Frame>
-        </ScrollView>
+        
+            <StackLayout>
+                <Frame Style="{DynamicResource Key=FileManagerStyle}">
+                    <ListView x:Name="filesList" Grid.Row="2" 
+                              ItemSelected="FileSelect" 
+                              SeparatorColor="{DynamicResource Key=UnderLineColor}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextCell Text="{Binding}" TextColor="{DynamicResource Key=FileNameTextColor}">
+                                    <TextCell.ContextActions>
+                                        <MenuItem Text="Удалить" IsDestructive="True" Clicked="Delete" />
+                                    </TextCell.ContextActions>
+                                </TextCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Frame>
+            </StackLayout>
+      
     </ContentPage.Content>
 
 </ContentPage>

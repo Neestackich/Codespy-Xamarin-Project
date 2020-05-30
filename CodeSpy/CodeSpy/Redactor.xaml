@@ -9,7 +9,7 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            
+
             <Color x:Key="PageBackGroundColor">#4d4552</Color>
             <Color x:Key="MasterDetailBackColor">#443d47</Color>
             <Color x:Key="BarBackGroundColor">#272329</Color>
@@ -21,12 +21,9 @@
             <Color x:Key="CodeEditorTextColor">#8f8199</Color>
             <Color x:Key="NumberBarTextColor">#6507a3</Color>
 
-            <Style x:Key="RedactorButtonsStyle" TargetType="Button">
+            <Style x:Key="RedactorButtonsStyle" TargetType="ImageButton">
                 <Setter Property="BackgroundColor" 
                         Value="{DynamicResource Key=RedactorButtonBGColor}"/>
-                <Setter Property="TextColor" 
-                        Value="{DynamicResource Key=RedactorButtonTxtColor}"/>
-                <Setter Property="FontSize" Value="Large"/>
                 <Setter Property="BorderColor"
                         Value="{DynamicResource Key=CodeEditorBorderColor}"/>
                 <Setter Property="BorderWidth" Value ="1"/>

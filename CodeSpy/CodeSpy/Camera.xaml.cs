@@ -16,14 +16,17 @@ namespace CodeSpy
     public partial class Camera : ContentPage
     {
         Image photoToShow;
+        Image noConnection;
 
         Frame roundedPhoto;
         Frame roundedText;
         Frame roundedFramePhoto;
 
-        Button capture;
-        Button select;
-        Button sendToRedact;
+        ImageButton capture;
+        ImageButton select;
+        ImageButton sendToRedact;
+        ImageButton increaseFont;
+        ImageButton decreaseFont;
 
         Label connectionMessage;
         Label capturedText;
@@ -65,28 +68,47 @@ namespace CodeSpy
             if (CrossConnectivity.Current.IsConnected)
             {
                 //камера 
-                capture = new Button
+                capture = new ImageButton
                 {
-                    Text = "C",
+                    Padding = 10,
+                    Source = "photoCameraPurple.png",
                     Style = (Style)Resources["CameraButtonsStyle"]
                 };
                 capture.Clicked += Capture_OnClicked;
 
                 //выбор из галереи
-                select = new Button
+                select = new ImageButton
                 {
-                    Text = "+",
+                    Padding = 10,
+                    Source = "photoPurple.png",
                     Style = (Style)Resources["CameraButtonsStyle"]
                 };
                 select.Clicked += Select_OnClicked;
 
                 //пересылка полученного текста в редактор
-                sendToRedact = new Button
+                sendToRedact = new ImageButton
                 {
-                    Text = "S",
+                    Padding = 10,
+                    Source = "processorPurple.png",
                     Style = (Style)Resources["CameraButtonsStyle"]
                 };
                 sendToRedact.Clicked += SendToRedact_Clicked;
+
+                increaseFont = new ImageButton
+                {
+                    Padding = 10,
+                    Source = "plus.png",
+                    Style = (Style)Resources["CameraButtonsStyle"]
+                };
+                increaseFont.Clicked += IncreaseFont_Clicked;
+
+                decreaseFont = new ImageButton
+                {
+                    Padding = 10,
+                    Source = "minus.png",
+                    Style = (Style)Resources["CameraButtonsStyle"]
+                };
+                decreaseFont.Clicked += DecreaseFont_Clicked;
 
                 capturedText = new Label
                 {
@@ -163,10 +185,22 @@ namespace CodeSpy
                 AbsoluteLayout.SetLayoutFlags(sendToRedact,
                     AbsoluteLayoutFlags.PositionProportional);
 
+                AbsoluteLayout.SetLayoutBounds(increaseFont,
+                   new Rectangle(0.37, 0.98, 50, 50));
+                AbsoluteLayout.SetLayoutFlags(increaseFont,
+                    AbsoluteLayoutFlags.PositionProportional);
+
+                AbsoluteLayout.SetLayoutBounds(decreaseFont,
+                   new Rectangle(0.17, 0.98, 50, 50));
+                AbsoluteLayout.SetLayoutFlags(decreaseFont,
+                    AbsoluteLayoutFlags.PositionProportional);
+
                 absoluteLayout.Children.Add(relativeLayout);
                 absoluteLayout.Children.Add(capture);
                 absoluteLayout.Children.Add(select);
                 absoluteLayout.Children.Add(sendToRedact);
+                absoluteLayout.Children.Add(increaseFont);
+                absoluteLayout.Children.Add(decreaseFont);
 
                 Content = absoluteLayout;
             }
@@ -179,10 +213,17 @@ namespace CodeSpy
                     VerticalOptions = LayoutOptions.Center
                 };
 
-                Content = new AbsoluteLayout
+                noConnection = new Image
                 {
-                    Padding = 3,
-                    Children = { connectionMessage }
+                    Source = "no.png",
+                    HeightRequest = 100,
+                    WidthRequest = 100
+                };
+
+                Content = new Grid
+                {
+                    Padding = 35,
+                    Children = { noConnection }
                 };
             }
         }
@@ -196,6 +237,22 @@ namespace CodeSpy
             else
             {
                 redactorPage.codeEditor.Text += capturedText.Text;
+            }
+        }
+
+        private void IncreaseFont_Clicked(object sender, EventArgs e)
+        {
+            if (capturedText.FontSize <= 30)
+            {
+                capturedText.FontSize += 2;
+            }
+        }
+
+        private void DecreaseFont_Clicked(object sender, EventArgs e)
+        {
+            if (capturedText.FontSize >= 14)
+            {
+                capturedText.FontSize -= 2;
             }
         }
 

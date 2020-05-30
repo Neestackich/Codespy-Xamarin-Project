@@ -19,12 +19,9 @@
             <Color x:Key="CodeEditorBackground">#18151a</Color>
             <Color x:Key="ExtractedTextBorderColor">#6507a3</Color>
 
-            <Style x:Key="CameraButtonsStyle" TargetType="Button">
+            <Style x:Key="CameraButtonsStyle" TargetType="ImageButton">
                 <Setter Property="BackgroundColor" 
                         Value="{DynamicResource Key=CamButtonBackGroundColor}"/>
-                <Setter Property="TextColor" 
-                        Value="{DynamicResource Key=CamButtonTxtGroundColor}"/>
-                <Setter Property="FontSize" Value="Large"/>
                 <Setter Property="BorderColor"
                         Value="{DynamicResource Key=ExtractedTextBorderColor}"/>
                 <Setter Property="BorderWidth" Value ="1"/>

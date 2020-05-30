@@ -81,7 +81,7 @@ namespace CodeSpy
         {
             Detail = camera;
 
-            PageIcon.Source = "spy.png";
+            PageIcon.Source = "photoCamera.png";
 
             //чтоб меню пропадало
             IsPresented = false;
@@ -92,7 +92,7 @@ namespace CodeSpy
         {
             Detail = redactor;
 
-            PageIcon.Source = "compiler.png";
+            PageIcon.Source = "processor.png";
 
             IsPresented = false;
         }
@@ -102,6 +102,8 @@ namespace CodeSpy
         {
             Detail = fileManager;
 
+            PageIcon.Source = "portableDocument.png";
+
             IsPresented = false;
         }
 
@@ -110,6 +112,8 @@ namespace CodeSpy
         {
             Detail = browser;
 
+            PageIcon.Source = "navigation.png";
+
             IsPresented = false;
         }
 
@@ -117,6 +121,8 @@ namespace CodeSpy
         private void SettingsButton_Clicked(object sender, EventArgs e)
         {
             Detail = settings;
+
+            PageIcon.Source = "settings.png";
 
             IsPresented = false;
         }
