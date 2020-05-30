@@ -60,7 +60,7 @@ namespace CodeSpy
 
             languages.Add("go", "package main \nimport \"fmt\" " +
                 "\nfunc main() {\nx:= 25\ny:= 10\nz:= x + y" +
-                "\nfmt.Printf(\"Sum of x + y = %d\", z)\n");
+                "\nfmt.Printf(\"Sum of x + y = %d\", z)\n}");
 
             language = new Picker
             {
