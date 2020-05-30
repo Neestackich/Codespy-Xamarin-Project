@@ -185,7 +185,6 @@ namespace CodeSpy
             AbsoluteLayout.SetLayoutFlags(decreaseFont,
                 AbsoluteLayoutFlags.PositionProportional);
 
-
             absoluteLayout.Children.Add(relativeLayout);
             absoluteLayout.Children.Add(save);
             absoluteLayout.Children.Add(delete);
