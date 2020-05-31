@@ -13,7 +13,6 @@ namespace CodeSpy
     public partial class SplashPageNew : ContentPage
     {
         Image splashImage;
-        Image splashPageBackground;
 
         public SplashPageNew()
         {
@@ -22,24 +21,20 @@ namespace CodeSpy
 
             var absLayout = new AbsoluteLayout();
 
-            splashPageBackground = new Image
-            {
-                Source = "SplashPageScreen.jpg"
-            };
-
             splashImage = new Image
             {
-                Source = "spy.png",
+                Source = "hacker.png",
                 WidthRequest = 100,
                 HeightRequest = 100
             };
 
-            absLayout.Children.Add(splashImage, new Rectangle(0.5, 0.5, AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
+            absLayout.Children.Add(splashImage, new Rectangle(0.5, 0.5, 
+                AbsoluteLayout.AutoSize, AbsoluteLayout.AutoSize));
 
             AbsoluteLayout.SetLayoutFlags(splashImage,
                 AbsoluteLayoutFlags.PositionProportional);
 
-            Content = splashPageBackground;
+            Content = absLayout;
         }
 
         protected override async void OnAppearing()
@@ -47,10 +42,10 @@ namespace CodeSpy
             base.OnAppearing();
 
             //первый аргумент - размер, второй аргумент время в милисекундах
-            await splashImage.ScaleTo(1, 2200);
+            await splashImage.ScaleTo(1, 1600);
             await splashImage.ScaleTo(0.9, 300, Easing.Linear);
             await splashImage.ScaleTo(0.9, 100);
-            await splashImage.ScaleTo(150, 2000, Easing.Linear);
+            await splashImage.ScaleTo(2, 250, Easing.Linear);
 
             Application.Current.MainPage = new NavigationPage(new MainPage());
         }

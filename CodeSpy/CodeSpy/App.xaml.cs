@@ -12,7 +12,10 @@ namespace CodeSpy
             
             InitializeComponent();
 
-            MainPage = new NavigationPage(new SplashPageNew());
+            MainPage = new NavigationPage(new SplashPageNew()
+            {
+                BackgroundColor = (Color)Resources["BarBackGroundColor"]
+            });
         }
 
         protected override void OnStart()

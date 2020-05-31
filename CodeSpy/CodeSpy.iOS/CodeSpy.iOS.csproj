@@ -206,4 +206,7 @@
   <ItemGroup>
     <BundleResource Include="Resources\compiler.png" />
   </ItemGroup>
+  <ItemGroup>
+    <BundleResource Include="Resources\hacker.png" />
+  </ItemGroup>
 </Project>

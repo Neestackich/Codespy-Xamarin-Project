@@ -536,3 +536,4 @@ D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\C
 D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy.Android\obj\Debug\90\res\drawable\minus.png
 D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy.Android\obj\Debug\90\res\drawable\save.png
 D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy.Android\obj\Debug\90\res\drawable\delete.png
+D:\Programming\VisualStudio\XamarinPropject\CodeSpyNeestackich\CodeSpy\CodeSpy\CodeSpy.Android\obj\Debug\90\res\drawable\hacker.png
