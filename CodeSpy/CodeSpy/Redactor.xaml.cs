@@ -15,6 +15,7 @@ using System.Runtime.InteropServices;
 using System.Net.Http.Headers;
 using System.IO;
 using System.Transactions;
+using System.Text.RegularExpressions;
 
 namespace CodeSpy
 {
@@ -54,8 +55,14 @@ namespace CodeSpy
 
         int stringCounter;
 
+        Regex regex;
+
+        MatchCollection matches;
+
         public Redactor(FileManaging _fileManagingPage)
         {
+            jdoodle = new JDoodle();
+
             fileManagingPage = _fileManagingPage;
 
             InitializeComponent();
@@ -64,8 +71,6 @@ namespace CodeSpy
 
             CrossConnectivity.Current.ConnectivityChanged +=
                 Current_ConnectivityChanged;
-
-            jdoodle = new JDoodle();
         }
 
         private void Current_ConnectivityChanged(object sender,
@@ -78,6 +83,8 @@ namespace CodeSpy
         {
             if (CrossConnectivity.Current.IsConnected)
             {
+                regex = new Regex(@"\n");
+
                 fileName = new ToolbarItem
                 {
                     Text = "newFile.txt"
@@ -348,21 +355,13 @@ namespace CodeSpy
 
         private void NumberBarFilling()
         {
-            stringCounter = 1;
-
-            for (int i = 0; i < codeEditor.Text.Length; i++)
-            {
-                if (codeEditor.Text[i] == '\n')
-                {
-                    stringCounter++;
-                }
-            }
+            matches = regex.Matches(codeEditor.Text);
 
             stringNumberBar.Text = null;
 
-            for (int i = 1; i <= stringCounter; i++)
+            for (int i = 0; i <= matches.Count; i++)
             {
-                stringNumberBar.Text += $"{i} \n";
+                stringNumberBar.Text += $"{i + 1} \n";
             }
         }
 

@@ -13,6 +13,7 @@
             <Color x:Key="MasterDetailBackColor">#443d47</Color>
             <Color x:Key="BarBackGroundColor">#272329</Color>
             <Color x:Key="FontColor">#a937de</Color>
+            <x:Double x:Key="FontSize">18</x:Double>
 
             <Style x:Key="MenuButtonStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#272329"/>

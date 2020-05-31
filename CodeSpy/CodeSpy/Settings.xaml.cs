@@ -66,7 +66,7 @@ namespace CodeSpy
             {
                 Title = "Язык",
                 TitleColor = (Color)Resources["FontColor"],
-                TextColor = (Color)Resources["FontColor"]
+                TextColor = (Color)Resources["FontColor"],
             };
             language.Items.Add("C#");
             language.Items.Add("Java");
@@ -122,8 +122,17 @@ namespace CodeSpy
         {
             if (language.Items[language.SelectedIndex] == "C#")
             {
-                redactorPage.codeEditor.Text = languages["csharp"];
-                redactorPage.jdoodle.infoToCompileMessage.language = "csharp";
+                //вот тут подумать надо
+                if (redactorPage.codeEditor.Text == new string('\n', 21))
+                {
+                    redactorPage.codeEditor.Text += languages["csharp"];
+                    redactorPage.jdoodle.infoToCompileMessage.language = "csharp";
+                }
+                else
+                {
+                    redactorPage.codeEditor.Text += languages["csharp"];
+                    redactorPage.jdoodle.infoToCompileMessage.language = "csharp";
+                }
 
                 version.Items.Add("mono 4.2.2");
                 version.Items.Add("mono 5.0.0");
