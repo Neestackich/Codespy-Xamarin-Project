@@ -67,6 +67,8 @@ namespace CodeSpy
 
             InitializeComponent();
 
+            Linking();
+
             ConnectivityCheck();
 
             CrossConnectivity.Current.ConnectivityChanged +=
@@ -79,192 +81,195 @@ namespace CodeSpy
             ConnectivityCheck();
         }
 
+        private void Linking()
+        {
+            regex = new Regex(@"\n");
+
+            fileName = new ToolbarItem
+            {
+                Text = "newFile.txt"
+            };
+            fileName.Clicked += FileName_Clicked;
+
+            sendToUrl = new ImageButton
+            {
+                Padding = 10,
+                Source = "processorPurple.png",
+                Style = (Style)Resources["RedactorButtonsStyle"]
+            };
+            sendToUrl.Clicked += SendContent_ButtonClick;
+
+            saveFile = new ImageButton
+            {
+                Padding = 10,
+                Source = "save.png",
+                Style = (Style)Resources["RedactorButtonsStyle"]
+            };
+            saveFile.Clicked += SaveFile_Clicked;
+
+            deleteFile = new ImageButton
+            {
+                Padding = 10,
+                Source = "delete.png",
+                Style = (Style)Resources["RedactorButtonsStyle"]
+            };
+            deleteFile.Clicked += DeleteFile_Clicked;
+
+            increaseFont = new ImageButton
+            {
+                Padding = 10,
+                Source = "plus.png",
+                Style = (Style)Resources["RedactorButtonsStyle"]
+            };
+            increaseFont.Clicked += IncreaseFont_Clicked;
+
+            decreaseFont = new ImageButton
+            {
+                Padding = 10,
+                Source = "minus.png",
+                Style = (Style)Resources["RedactorButtonsStyle"]
+            };
+            decreaseFont.Clicked += DecreaseFont_Clicked;
+
+            codeEditor = new Editor
+            {
+                FontFamily = "Consolas",
+                Text = new string('\n', 21),
+                TextColor = (Color)Resources["CodeEditorTextColor"],
+                AutoSize = EditorAutoSizeOption.TextChanges,
+                BackgroundColor =
+                    (Color)Resources["CodeEditorBackground"]
+            };
+            codeEditor.TextChanged += StringNumberBar_Change;
+
+            stringNumberBar = new Label
+            {
+                TextColor = (Color)Resources["NumberBarTextColor"],
+                FontSize = codeEditor.FontSize,
+                HorizontalOptions = LayoutOptions.Center
+            };
+
+            roundedStringNumberBar = new Frame
+            {
+                Margin = new Thickness(3, 3, 0, 64),
+                Padding = new Thickness(5, 17, 0, 10),
+                CornerRadius = 20,
+                IsClippedToBounds = true,
+                HasShadow = false,
+                BorderColor =
+                   (Color)Resources["CodeEditorBorderColor"],
+                BackgroundColor =
+                   (Color)Resources["CodeEditorBackground"],
+                HeightRequest = codeEditor.HeightRequest,
+                Content = stringNumberBar
+            };
+
+            NumberBarFilling();
+
+            roundedEditor = new Frame
+            {
+                Margin = new Thickness(0, 3, 3, 64),
+                Padding = new Thickness(7, 7, 7, 30),
+                CornerRadius = 20,
+                BackgroundColor =
+                   (Color)Resources["CodeEditorBackground"],
+                IsClippedToBounds = true,
+                HasShadow = false,
+                Content = codeEditor,
+                HorizontalOptions = LayoutOptions.FillAndExpand,
+                BorderColor =
+                   (Color)Resources["CodeEditorBorderColor"]
+            };
+
+            connectionMessage = new Label
+            {
+                Text = "Подключение отсутствует",
+                HorizontalOptions = LayoutOptions.Center,
+                VerticalOptions = LayoutOptions.Center
+            };
+
+            noConnection = new Image
+            {
+                Source = "no.png",
+                HeightRequest = 100,
+                WidthRequest = 100
+            };
+
+            absoluteLayout = new AbsoluteLayout();
+
+            relativeLayout = new RelativeLayout();
+
+            scrollView = new ScrollView
+            {
+                Orientation = ScrollOrientation.Both
+            };
+
+            stackView = new StackLayout
+            {
+                Orientation = StackOrientation.Horizontal,
+                HorizontalOptions = LayoutOptions.FillAndExpand
+            };
+
+            stackView.Children.Add(roundedStringNumberBar);
+            stackView.Children.Add(roundedEditor);
+
+            scrollView.Content = stackView;
+
+            //ресайз 
+            relativeLayout.Children.Add(scrollView,
+                xConstraint: Constraint.Constant(0),
+                yConstraint: Constraint.Constant(0),
+                widthConstraint: Constraint.RelativeToParent((parent) =>
+                { return parent.Width; }),
+                heightConstraint: Constraint.RelativeToParent((parent) =>
+                { return parent.Height; }));
+
+            AbsoluteLayout.SetLayoutBounds(saveFile,
+                new Rectangle(0.97, 0.98, 50, 50));
+            AbsoluteLayout.SetLayoutFlags(saveFile,
+                AbsoluteLayoutFlags.PositionProportional);
+
+            AbsoluteLayout.SetLayoutBounds(deleteFile,
+               new Rectangle(0.77, 0.98, 50, 50));
+            AbsoluteLayout.SetLayoutFlags(deleteFile,
+                AbsoluteLayoutFlags.PositionProportional);
+
+            AbsoluteLayout.SetLayoutBounds(sendToUrl,
+                new Rectangle(0.57, 0.98, 50, 50));
+            AbsoluteLayout.SetLayoutFlags(sendToUrl,
+                AbsoluteLayoutFlags.PositionProportional);
+
+            AbsoluteLayout.SetLayoutBounds(increaseFont,
+                new Rectangle(0.37, 0.98, 50, 50));
+            AbsoluteLayout.SetLayoutFlags(increaseFont,
+                AbsoluteLayoutFlags.PositionProportional);
+
+            AbsoluteLayout.SetLayoutBounds(decreaseFont,
+                new Rectangle(0.17, 0.98, 50, 50));
+            AbsoluteLayout.SetLayoutFlags(decreaseFont,
+                AbsoluteLayoutFlags.PositionProportional);
+
+            absoluteLayout.Children.Add(relativeLayout);
+            absoluteLayout.Children.Add(saveFile);
+            absoluteLayout.Children.Add(deleteFile);
+            absoluteLayout.Children.Add(sendToUrl);
+            absoluteLayout.Children.Add(increaseFont);
+            absoluteLayout.Children.Add(decreaseFont);
+
+            if (this.ToolbarItems.Count == 0)
+            {
+                this.ToolbarItems.Add(fileName);
+            }
+        }
+
         private void ConnectivityCheck()
         {
             if (CrossConnectivity.Current.IsConnected)
             {
-                regex = new Regex(@"\n");
-
-                fileName = new ToolbarItem
-                {
-                    Text = "newFile.txt"
-                };
-                fileName.Clicked += FileName_Clicked;
-
-                sendToUrl = new ImageButton
-                {
-                    Padding = 10,
-                    Source = "processorPurple.png",
-                    Style = (Style)Resources["RedactorButtonsStyle"]
-                };
-                sendToUrl.Clicked += SendContent_ButtonClick;
-
-                saveFile = new ImageButton
-                {
-                    Padding = 10,
-                    Source = "save.png",
-                    Style = (Style)Resources["RedactorButtonsStyle"]
-                };
-                saveFile.Clicked += SaveFile_Clicked;
-
-                deleteFile = new ImageButton
-                {
-                    Padding = 10,
-                    Source = "delete.png",
-                    Style = (Style)Resources["RedactorButtonsStyle"]
-                };
-                deleteFile.Clicked += DeleteFile_Clicked;
-
-                increaseFont = new ImageButton
-                {
-                    Padding = 10,
-                    Source = "plus.png",
-                    Style = (Style)Resources["RedactorButtonsStyle"]
-                };
-                increaseFont.Clicked += IncreaseFont_Clicked;
-
-                decreaseFont = new ImageButton
-                {
-                    Padding = 10,
-                    Source = "minus.png",
-                    Style = (Style)Resources["RedactorButtonsStyle"]
-                };
-                decreaseFont.Clicked += DecreaseFont_Clicked;
-
-                codeEditor = new Editor
-                {
-                    FontFamily = "Consolas",
-                    Text = new string('\n', 21),
-                    TextColor = (Color)Resources["CodeEditorTextColor"],
-                    AutoSize = EditorAutoSizeOption.TextChanges,
-                    BackgroundColor =
-                        (Color)Resources["CodeEditorBackground"]
-                };
-                codeEditor.TextChanged += StringNumberBar_Change;
-
-                stringNumberBar = new Label
-                {
-                    TextColor = (Color)Resources["NumberBarTextColor"],
-                    FontSize = codeEditor.FontSize,
-                    HorizontalOptions = LayoutOptions.Center
-                };
-
-                roundedStringNumberBar = new Frame
-                {
-                    Margin = new Thickness(3, 3, 0, 64),
-                    Padding = new Thickness(5, 17, 0, 10),
-                    CornerRadius = 20,
-                    IsClippedToBounds = true,
-                    HasShadow = false,
-                    BorderColor =
-                       (Color)Resources["CodeEditorBorderColor"],
-                    BackgroundColor =
-                       (Color)Resources["CodeEditorBackground"],
-                    HeightRequest = codeEditor.HeightRequest,
-                    Content = stringNumberBar
-                };
-
-                NumberBarFilling();
-
-                roundedEditor = new Frame
-                {
-                    Margin = new Thickness(0, 3, 3, 64),
-                    Padding = new Thickness(7, 7, 7, 30),
-                    CornerRadius = 20,
-                    BackgroundColor =
-                       (Color)Resources["CodeEditorBackground"],
-                    IsClippedToBounds = true,
-                    HasShadow = false,
-                    Content = codeEditor,
-                    HorizontalOptions = LayoutOptions.FillAndExpand,
-                    BorderColor =
-                       (Color)Resources["CodeEditorBorderColor"]
-                };
-
-                absoluteLayout = new AbsoluteLayout();
-
-                relativeLayout = new RelativeLayout();
-
-                scrollView = new ScrollView
-                {
-                    Orientation = ScrollOrientation.Both
-                };
-
-                stackView = new StackLayout
-                {
-                    Orientation = StackOrientation.Horizontal,
-                    HorizontalOptions = LayoutOptions.FillAndExpand
-                };
-
-                stackView.Children.Add(roundedStringNumberBar);
-                stackView.Children.Add(roundedEditor);
-
-                scrollView.Content = stackView;
-
-                //ресайз 
-                relativeLayout.Children.Add(scrollView,
-                    xConstraint: Constraint.Constant(0),
-                    yConstraint: Constraint.Constant(0),
-                    widthConstraint: Constraint.RelativeToParent((parent) =>
-                    { return parent.Width; }),
-                    heightConstraint: Constraint.RelativeToParent((parent) =>
-                    { return parent.Height; }));
-
-                AbsoluteLayout.SetLayoutBounds(saveFile,
-                    new Rectangle(0.97, 0.98, 50, 50));
-                AbsoluteLayout.SetLayoutFlags(saveFile,
-                    AbsoluteLayoutFlags.PositionProportional);
-
-                AbsoluteLayout.SetLayoutBounds(deleteFile,
-                   new Rectangle(0.77, 0.98, 50, 50));
-                AbsoluteLayout.SetLayoutFlags(deleteFile,
-                    AbsoluteLayoutFlags.PositionProportional);
-
-                AbsoluteLayout.SetLayoutBounds(sendToUrl,
-                    new Rectangle(0.57, 0.98, 50, 50));
-                AbsoluteLayout.SetLayoutFlags(sendToUrl,
-                    AbsoluteLayoutFlags.PositionProportional);
-
-                AbsoluteLayout.SetLayoutBounds(increaseFont,
-                    new Rectangle(0.37, 0.98, 50, 50));
-                AbsoluteLayout.SetLayoutFlags(increaseFont,
-                    AbsoluteLayoutFlags.PositionProportional);
-
-                AbsoluteLayout.SetLayoutBounds(decreaseFont,
-                    new Rectangle(0.17, 0.98, 50, 50));
-                AbsoluteLayout.SetLayoutFlags(decreaseFont,
-                    AbsoluteLayoutFlags.PositionProportional);
-
-                absoluteLayout.Children.Add(relativeLayout);
-                absoluteLayout.Children.Add(saveFile);
-                absoluteLayout.Children.Add(deleteFile);
-                absoluteLayout.Children.Add(sendToUrl);
-                absoluteLayout.Children.Add(increaseFont);
-                absoluteLayout.Children.Add(decreaseFont);
-
-                if (this.ToolbarItems.Count == 0)
-                {
-                    this.ToolbarItems.Add(fileName);
-                }
-
                 Content = absoluteLayout;
             }
             else
             {
-                connectionMessage = new Label
-                {
-                    Text = "Подключение отсутствует",
-                    HorizontalOptions = LayoutOptions.Center,
-                    VerticalOptions = LayoutOptions.Center
-                };
-
-                noConnection = new Image
-                {
-                    Source = "no.png",
-                    HeightRequest = 100,
-                    WidthRequest = 100
-                };
-
                 Content = new Grid
                 {
                     Padding = 35,
