@@ -230,7 +230,8 @@ namespace CodeSpy
 
         private void SendToRedact_Clicked(object sender, EventArgs e)
         {
-            if (redactorPage.codeEditor.Text == new string('\n', 21))
+            if (redactorPage.codeEditor.Text == 
+                new string('\n', redactorPage.codeEditor.Text.Length))
             {
                 redactorPage.codeEditor.Text = capturedText.Text;
             }

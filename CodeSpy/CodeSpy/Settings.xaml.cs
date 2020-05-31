@@ -122,17 +122,8 @@ namespace CodeSpy
         {
             if (language.Items[language.SelectedIndex] == "C#")
             {
-                //вот тут подумать надо
-                if (redactorPage.codeEditor.Text == new string('\n', 21))
-                {
-                    redactorPage.codeEditor.Text += languages["csharp"];
-                    redactorPage.jdoodle.infoToCompileMessage.language = "csharp";
-                }
-                else
-                {
-                    redactorPage.codeEditor.Text += languages["csharp"];
-                    redactorPage.jdoodle.infoToCompileMessage.language = "csharp";
-                }
+                redactorPage.codeEditor.Text = languages["csharp"];
+                redactorPage.jdoodle.infoToCompileMessage.language = "csharp";
 
                 version.Items.Add("mono 4.2.2");
                 version.Items.Add("mono 5.0.0");

@@ -361,7 +361,8 @@ namespace CodeSpy
 
             for (int i = 0; i <= matches.Count; i++)
             {
-                stringNumberBar.Text += $"{i + 1} \n";
+                stringNumberBar.Text += $"{i + 1}" + 
+                    new string(' ', (i == 0) ? 0 : (int)Math.Log10(Math.Abs(i))) + '\n';
             }
         }
 

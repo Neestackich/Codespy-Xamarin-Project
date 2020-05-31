@@ -47,14 +47,6 @@ namespace CodeSpy
                 BarTextColor = (Color)Resources["BarTextColor"]
             };
 
-            cameraPage = new Camera(redactorPage);
-
-            camera = new NavigationPage(cameraPage)
-            {
-                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
-                BarTextColor = (Color)Resources["BarTextColor"]
-            };
-
             fileManagingPage = new FileManaging(redactorPage);
 
             fileManager = new NavigationPage(fileManagingPage)
@@ -79,7 +71,11 @@ namespace CodeSpy
         //открываем страницу с камерой
         private void CameraButton_Clicked(object sender, EventArgs e)
         {
-            Detail = camera;
+            Detail = new NavigationPage(new Camera(redactorPage))
+            {
+                BarBackgroundColor = (Color)Resources["BarBackGroundColor"],
+                BarTextColor = (Color)Resources["BarTextColor"]
+            };
 
             PageIcon.Source = "photoCamera.png";
 
