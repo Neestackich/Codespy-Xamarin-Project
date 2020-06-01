@@ -53,8 +53,6 @@ namespace CodeSpy
         
         FileManaging fileManagingPage;
 
-        int stringCounter;
-
         Regex regex;
 
         MatchCollection matches;

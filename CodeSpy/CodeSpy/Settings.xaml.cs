@@ -120,153 +120,217 @@ namespace CodeSpy
 
         private void Language_SelectedIndexChanged(object sender, EventArgs e)
         {
+            version.SelectedIndexChanged -= Version_SelectedIndexChanged;
+
             if (language.Items[language.SelectedIndex] == "C#")
             {
-                redactorPage.codeEditor.Text = languages["csharp"];
-                redactorPage.jdoodle.infoToCompileMessage.language = "csharp";
+                version.Items.Clear();
 
                 version.Items.Add("mono 4.2.2");
                 version.Items.Add("mono 5.0.0");
                 version.Items.Add("mono 5.10.1");
                 version.Items.Add("mono 6.0.0");
+
+                version.SelectedIndex = 0;
+
+                version.SelectedIndexChanged += Version_SelectedIndexChanged;
+
+                redactorPage.codeEditor.Text = languages["csharp"];
+                redactorPage.jdoodle.infoToCompileMessage.language = "csharp";
             }
             else if(language.Items[language.SelectedIndex] == "Java")
             {
-                redactorPage.codeEditor.Text = languages["java"];
-                redactorPage.jdoodle.infoToCompileMessage.language = "java";
+                version.Items.Clear();
 
                 version.Items.Add("JDK 1.8.0_66");
                 version.Items.Add("JDK 9.0.1");
                 version.Items.Add("JDK 10.0.1");
                 version.Items.Add("JDK 11.0.4");
+
+                version.SelectedIndex = 0;
+
+                redactorPage.codeEditor.Text = languages["java"];
+                redactorPage.jdoodle.infoToCompileMessage.language = "java";
+
+                version.SelectedIndexChanged += Version_SelectedIndexChanged;
             }
             else if (language.Items[language.SelectedIndex] == "C")
             {
+                version.Items.Clear();
+
+                version.Items.Add("GCC 5.3.0");
+                version.Items.Add("Zapcc 5.0.0");
+                version.Items.Add("GCC 7.2.0");
+                version.Items.Add("GCC 8.1.0");
+                version.Items.Add("GCC 9.1.0");
+
+                version.SelectedIndex = 0;
+
                 redactorPage.codeEditor.Text = languages["c"];
                 redactorPage.jdoodle.infoToCompileMessage.language = "c";
 
-                version.Items.Add("GCC 5.3.0");
-                version.Items.Add("Zapcc 5.0.0");
-                version.Items.Add("GCC 7.2.0");
-                version.Items.Add("GCC 8.1.0");
-                version.Items.Add("GCC 9.1.0");
+                version.SelectedIndexChanged += Version_SelectedIndexChanged;
             }
             else if (language.Items[language.SelectedIndex] == "C++")
             {
-                redactorPage.codeEditor.Text = languages["cpp"];
-                redactorPage.jdoodle.infoToCompileMessage.language = "cpp";
+                version.Items.Clear();
 
                 version.Items.Add("GCC 5.3.0");
                 version.Items.Add("Zapcc 5.0.0");
                 version.Items.Add("GCC 7.2.0");
                 version.Items.Add("GCC 8.1.0");
                 version.Items.Add("GCC 9.1.0");
+
+                version.SelectedIndex = 0;
+
+                redactorPage.codeEditor.Text = languages["cpp"];
+                redactorPage.jdoodle.infoToCompileMessage.language = "cpp";
+
+                version.SelectedIndexChanged += Version_SelectedIndexChanged;
             }
             else if (language.Items[language.SelectedIndex] == "Ruby")
             {
-                redactorPage.codeEditor.Text = languages["ruby"];
-                redactorPage.jdoodle.infoToCompileMessage.language = "ruby";
+                version.Items.Clear();
 
                 version.Items.Add("2.2.4");
                 version.Items.Add("2.4.2p198");
                 version.Items.Add("2.5.1p57");
                 version.Items.Add("2.6.5");
+
+                version.SelectedIndex = 0;
+
+                redactorPage.codeEditor.Text = languages["ruby"];
+                redactorPage.jdoodle.infoToCompileMessage.language = "ruby";
+
+                version.SelectedIndexChanged += Version_SelectedIndexChanged;
             }
             else
             {
-                redactorPage.codeEditor.Text = languages["go"];
-                redactorPage.jdoodle.infoToCompileMessage.language = "go";
+                version.Items.Clear();
 
                 version.Items.Add("1.5.2");
                 version.Items.Add("1.9.2");
                 version.Items.Add("1.10.2");
                 version.Items.Add("1.13.1");
+
+                version.SelectedIndex = 0;
+
+                redactorPage.codeEditor.Text = languages["go"];
+                redactorPage.jdoodle.infoToCompileMessage.language = "go";
+
+                version.SelectedIndexChanged += Version_SelectedIndexChanged;
             }
         }
 
         private void Version_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (version.Items[version.SelectedIndex] == "mono 4.2.2")
+            if (language.Items[language.SelectedIndex] == "C#" && 
+                version.Items[version.SelectedIndex] == "mono 4.2.2")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "0";
             }
-            else if (version.Items[version.SelectedIndex] == "mono 5.0.0")
+            else if (language.Items[language.SelectedIndex] == "C#" && 
+                version.Items[version.SelectedIndex] == "mono 5.0.0")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "1";
             }
-            else if (version.Items[version.SelectedIndex] == "mono 5.10.1")
+            else if (language.Items[language.SelectedIndex] == "C#" && 
+                version.Items[version.SelectedIndex] == "mono 5.10.1")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "2";
             }
-            else if (version.Items[version.SelectedIndex] == "mono 6.0.0")
+            else if (language.Items[language.SelectedIndex] == "C#" && 
+                version.Items[version.SelectedIndex] == "mono 6.0.0")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "3";
             }
-            else if (version.Items[version.SelectedIndex] == "JDK 1.8.0_66")
+            else if (language.Items[language.SelectedIndex] == "Java" && 
+                version.Items[version.SelectedIndex] == "JDK 1.8.0_66")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "0";
             }
-            else if (version.Items[version.SelectedIndex] == "JDK 9.0.1")
+            else if (language.Items[language.SelectedIndex] == "Java" && 
+                version.Items[version.SelectedIndex] == "JDK 9.0.1")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "1";
             }
-            else if (version.Items[version.SelectedIndex] == "JDK 10.0.1")
+            else if (language.Items[language.SelectedIndex] == "Java" && 
+                version.Items[version.SelectedIndex] == "JDK 10.0.1")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "2";
             }
-            else if (version.Items[version.SelectedIndex] == "JDK 11.0.4")
+            else if (language.Items[language.SelectedIndex] == "Java" && 
+                version.Items[version.SelectedIndex] == "JDK 11.0.4")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "3";
             }
-            else if (version.Items[version.SelectedIndex] == "GCC 5.3.0")
+            else if ((language.Items[language.SelectedIndex] == "C" ||
+                language.Items[language.SelectedIndex] == "C++") && 
+                version.Items[version.SelectedIndex] == "GCC 5.3.0")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "0";
             }
-            else if (version.Items[version.SelectedIndex] == "Zapcc 5.0.0")
+            else if ((language.Items[language.SelectedIndex] == "C" ||
+                language.Items[language.SelectedIndex] == "C++") && 
+                version.Items[version.SelectedIndex] == "Zapcc 5.0.0")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "1";
             }
-            else if (version.Items[version.SelectedIndex] == "GCC 7.2.0")
+            else if ((language.Items[language.SelectedIndex] == "C" ||
+                language.Items[language.SelectedIndex] == "C++") && 
+                version.Items[version.SelectedIndex] == "GCC 7.2.0")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "2";
             }
-            else if (version.Items[version.SelectedIndex] == "GCC 8.1.0")
+            else if ((language.Items[language.SelectedIndex] == "C" ||
+                language.Items[language.SelectedIndex] == "C++") && 
+                version.Items[version.SelectedIndex] == "GCC 8.1.0")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "3";
             }
-            else if (version.Items[version.SelectedIndex] == "GCC 9.1.0")
+            else if ((language.Items[language.SelectedIndex] == "C" ||
+                language.Items[language.SelectedIndex] == "C++") && 
+                version.Items[version.SelectedIndex] == "GCC 9.1.0")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "4";
             }
-            else if (version.Items[version.SelectedIndex] == "2.2.4")
+            else if (language.Items[language.SelectedIndex] == "Ruby" && 
+                version.Items[version.SelectedIndex] == "2.2.4")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "0";
             }
-            else if (version.Items[version.SelectedIndex] == "2.4.2p198")
+            else if (language.Items[language.SelectedIndex] == "Ruby" && 
+                version.Items[version.SelectedIndex] == "2.4.2p198")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "1";
             }
-            else if (version.Items[version.SelectedIndex] == "2.5.1p57")
+            else if (language.Items[language.SelectedIndex] == "Ruby" && 
+                version.Items[version.SelectedIndex] == "2.5.1p57")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "2";
             }
-            else if (version.Items[version.SelectedIndex] == "2.6.5")
+            else if (language.Items[language.SelectedIndex] == "Ruby" && 
+                version.Items[version.SelectedIndex] == "2.6.5")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "3";
             }
-            else if (version.Items[version.SelectedIndex] == "1.5.2")
+            else if (language.Items[language.SelectedIndex] == "GO" && 
+                version.Items[version.SelectedIndex] == "1.5.2")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "0";
             }
-            else if (version.Items[version.SelectedIndex] == "1.9.2")
+            else if (language.Items[language.SelectedIndex] == "GO" && 
+                version.Items[version.SelectedIndex] == "1.9.2")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "1";
             }
-            else if (version.Items[version.SelectedIndex] == "1.10.2")
+            else if (language.Items[language.SelectedIndex] == "GO" && 
+                version.Items[version.SelectedIndex] == "1.10.2")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "2";
             }
-            else if (version.Items[version.SelectedIndex] == "1.13.1")
+            else if (language.Items[language.SelectedIndex] == "GO" && 
+                version.Items[version.SelectedIndex] == "1.13.1")
             {
                 redactorPage.jdoodle.infoToCompileMessage.versionIndex = "3";
             }
