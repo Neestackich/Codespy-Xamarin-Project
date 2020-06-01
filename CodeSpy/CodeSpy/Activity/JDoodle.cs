@@ -35,9 +35,9 @@ namespace CodeSpy
         {
             infoToCompileMessage = new MessageToCompile
             {
-                clientId = "6b4813b8a8bcaa306cf200cb1614b862",
+                clientId = "<ID>",
                 clientSecret =
-                    "648bd55518cc25ec785b70ecf614298a1868679fe653517eace4567cb44bf86e",
+                    "<SECRET>",
                 stdin = "",
                 language = "",
                 versionIndex = ""
@@ -45,9 +45,9 @@ namespace CodeSpy
 
             creditsInfoMessage = new MessageToCheck
             {
-                clientId = "6b4813b8a8bcaa306cf200cb1614b862",
+                clientId = "<ID>",
                 clientSecret =
-                    "648bd55518cc25ec785b70ecf614298a1868679fe653517eace4567cb44bf86e"
+                    "<SECRET>"
             };
 
             compilerResult = new CompilerOutputInfo();
